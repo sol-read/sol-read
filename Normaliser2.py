@@ -1,3 +1,7 @@
+## This script was a working system for extracting graphical data from a series of .txt files
+## that measured the light spectra from various paint samples as part of my Master's project.
+
+
 ########################################################################################
 #_____Importing libraries and declaring things that won't change from time to time_____#
 ########################################################################################
