@@ -1,3 +1,7 @@
+## In conjunction with Normaliser2.py this script would output the results of the spectral reading.
+## Understandably poor code (I was a physics student, not a comp sci student!) but it achieved 
+## what I needed it to.
+
 ########################################################################################
 #_____Importing libraries and declaring things that won't change from time to time_____#
 ########################################################################################
