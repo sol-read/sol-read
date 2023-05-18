@@ -25,4 +25,5 @@ bin/
 ### Mac OS ###
 .DS_Store
 
+### Output ###
 member-file.csv
