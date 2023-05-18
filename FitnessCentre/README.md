@@ -1,0 +1,2 @@
+This is a practice project that aims to utilise a number of basic Java concepts to produce an interactive (and persistent) Fitness Centre management system.
+I will periodically use this project to implement new concepts as I learn them!
