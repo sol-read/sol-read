@@ -1,3 +1,8 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+/aws.xml
+/modules.xml
+/misc.xml
+/sol-read.iml
+/vcs.xml
