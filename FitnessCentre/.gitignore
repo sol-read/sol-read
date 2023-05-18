@@ -22,10 +22,15 @@ bin/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
-.vscode/
-
 ### Mac OS ###
 .DS_Store
 
+### Output ###
 member-file.csv
+
+### Miscellaneous ###
+.idea/aws.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
