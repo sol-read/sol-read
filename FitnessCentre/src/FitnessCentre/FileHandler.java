@@ -1,13 +1,14 @@
 package FitnessCentre;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class FileHandler {
 
-    public LinkedList<Member> readFile() {
+    public LinkedList<Member> readMemberFile(ArrayList<Club> clubList) {
 
-        LinkedList<Member> memberList = new LinkedList();
+        LinkedList<Member> memberList = new LinkedList<>();
         String line;
         String[] splitLine;
         Member member;
@@ -18,7 +19,9 @@ public class FileHandler {
             while(line != null) {
                 splitLine = line.split(", ");
                 if(splitLine[0].equals("S")) {
-                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
+                    Club thisClub = clubList.get(-1+Integer.parseInt(splitLine[4]));
+                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), thisClub);
+                    clubList.get(-1+Integer.parseInt(splitLine[4])).getMemberList().add(member);
 
                 } else {
                     member = new MultiClubMember('M', Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
@@ -27,10 +30,33 @@ public class FileHandler {
                 line = reader.readLine();
             }
         } catch(IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Could not read member file: " + e.getMessage());
         }
 
         return memberList;
+    }
+
+    public ArrayList<Club> readClubFile() {
+
+        ArrayList<Club> clubList = new ArrayList<>();
+        String line;
+        String[] splitLine;
+        Club club;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader("club-file.csv"))) {
+            line = reader.readLine();
+            while(line != null) {
+                splitLine = line.split(",");
+                club = new Club(Integer.parseInt(splitLine[0]), splitLine[1],Double.parseDouble(splitLine[2]));
+                clubList.add(club);
+                line = reader.readLine();
+            }
+
+        } catch(IOException e) {
+            System.out.println("Could not read club file: " + e.getMessage());
+        }
+
+        return clubList;
     }
 
     public void appendFile(String member) {
