@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class FileHandler {
 
-    public LinkedList<Member> readMemberFile() {
+    public LinkedList<Member> readMemberFile(ArrayList<Club> clubList) {
 
         LinkedList<Member> memberList = new LinkedList<>();
         String line;
@@ -19,7 +19,8 @@ public class FileHandler {
             while(line != null) {
                 splitLine = line.split(", ");
                 if(splitLine[0].equals("S")) {
-                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
+                    Club membersClub = clubList.get(Integer.parseInt(splitLine[4]));
+                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), membersClub);
 
                 } else {
                     member = new MultiClubMember('M', Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
