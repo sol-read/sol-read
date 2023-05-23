@@ -19,8 +19,9 @@ public class FileHandler {
             while(line != null) {
                 splitLine = line.split(", ");
                 if(splitLine[0].equals("S")) {
-                    Club membersClub = clubList.get(Integer.parseInt(splitLine[4]));
-                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), membersClub);
+                    Club thisClub = clubList.get(-1+Integer.parseInt(splitLine[4]));
+                    member = new SingleClubMember('S',Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), thisClub);
+                    clubList.get(-1+Integer.parseInt(splitLine[4])).getMemberList().add(member);
 
                 } else {
                     member = new MultiClubMember('M', Integer.parseInt(splitLine[1]), splitLine[2], Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
