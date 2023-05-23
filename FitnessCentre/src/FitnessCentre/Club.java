@@ -6,8 +6,13 @@ public class Club {
 
     private int id;
     private String name;
-    LinkedList<Member> memberList;
-    double fees;
+    private LinkedList<Member> memberList = new LinkedList<>();
+    private double fees;
+
+    public int getClubId() { return id; }
+    public String getName() { return name; }
+    public LinkedList<Member> getMemberList() { return memberList; }
+    public double getFees() { return fees; }
 
     public void assignToClub(SingleClubMember member) {
         memberList.add(member);
