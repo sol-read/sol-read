@@ -172,7 +172,7 @@ public class MembershipManagement {
                                                         
                                 Club ID: %s
                                 Club Name: %s
-                                Annual Fees: %s
+                                Annual Fee: £%s
                                 No. Members: %s
                                                         
                                 """
