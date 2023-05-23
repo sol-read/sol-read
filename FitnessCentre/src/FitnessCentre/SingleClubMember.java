@@ -2,22 +2,22 @@ package FitnessCentre;
 
 public class SingleClubMember extends Member {
 
-    private int club;
+    private int clubId;
 
-    public void setClub(int club) {
-        this.club = club;
+    public void setClub(int clubId) {
+        this.clubId = clubId;
     }
 
-    public int getClub() { return club; }
+    public int getClub() { return clubId; }
 
-    public SingleClubMember(char memberType, int memberId, String name, double fees, int club) {
+    public SingleClubMember(char memberType, int memberId, String name, double fees, int clubId) {
         super(memberType, memberId, name, fees);
-        this.club = club;
+        this.clubId = clubId;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", " + club;
+        return super.toString() + ", " + clubId;
     }
 
 }
