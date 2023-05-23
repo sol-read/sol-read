@@ -8,7 +8,7 @@ public class FileHandler {
 
     public LinkedList<Member> readMemberFile() {
 
-        LinkedList<Member> memberList = new LinkedList();
+        LinkedList<Member> memberList = new LinkedList<>();
         String line;
         String[] splitLine;
         Member member;
@@ -44,7 +44,7 @@ public class FileHandler {
         try(BufferedReader reader = new BufferedReader(new FileReader("club-file.csv"))) {
             line = reader.readLine();
             while(line != null) {
-                splitLine = line.split(", ");
+                splitLine = line.split(",");
                 club = new Club(Integer.parseInt(splitLine[0]), splitLine[1],Double.parseDouble(splitLine[2]));
                 clubList.add(club);
                 line = reader.readLine();
