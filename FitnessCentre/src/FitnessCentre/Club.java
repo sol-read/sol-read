@@ -14,10 +14,6 @@ public class Club {
     public LinkedList<Member> getMemberList() { return memberList; }
     public double getFees() { return fees; }
 
-    public void assignToClub(SingleClubMember member) {
-        memberList.add(member);
-    }
-
     public Club(int id, String name, double fees) {
         this.id = id;
         this.name = name;
