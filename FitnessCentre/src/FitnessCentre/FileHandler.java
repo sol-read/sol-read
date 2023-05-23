@@ -30,7 +30,7 @@ public class FileHandler {
                 line = reader.readLine();
             }
         } catch(IOException e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            System.out.println("Could not read member file: " + e.getMessage());
         }
 
         return memberList;
