@@ -12,14 +12,15 @@ public class Controller {
         MembershipManagement management = new MembershipManagement();
         FileHandler handler = new FileHandler();
 
-        LinkedList<Member> memberList = handler.readMemberFile();
         ArrayList<Club> clubList = handler.readClubFile();
+        LinkedList<Member> memberList = handler.readMemberFile(clubList);
+
         int choice = management.getChoice();
 
         while (choice != 9) {
             switch (choice) {
                 case 1 -> {
-                    memberString = management.addMembers(memberList);
+                    memberString = management.addMembers(memberList, clubList);
                     handler.appendFile(memberString);
                 }
                 case 2 -> {
@@ -28,6 +29,9 @@ public class Controller {
                 }
                 case 3 -> {
                     management.printMemberInfo(memberList);
+                }
+                case 4 -> {
+                    management.printClubInfo(clubList);
                 }
                 default -> {
                     System.out.println("Invalid entry!");
