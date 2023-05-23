@@ -1,11 +1,12 @@
 package FitnessCentre;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class FileHandler {
 
-    public LinkedList<Member> readFile() {
+    public LinkedList<Member> readMemberFile() {
 
         LinkedList<Member> memberList = new LinkedList();
         String line;
@@ -31,6 +32,29 @@ public class FileHandler {
         }
 
         return memberList;
+    }
+
+    public ArrayList<Club> readClubFile() {
+
+        ArrayList<Club> clubList = new ArrayList<>();
+        String line;
+        String[] splitLine;
+        Club club;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader("club-file.csv"))) {
+            line = reader.readLine();
+            while(line != null) {
+                splitLine = line.split(", ");
+                club = new Club(Integer.parseInt(splitLine[0]), splitLine[1],Double.parseDouble(splitLine[2]));
+                clubList.add(club);
+                line = reader.readLine();
+            }
+
+        } catch(IOException e) {
+            System.out.println("Could not read club file: " + e.getMessage());
+        }
+
+        return clubList;
     }
 
     public void appendFile(String member) {
