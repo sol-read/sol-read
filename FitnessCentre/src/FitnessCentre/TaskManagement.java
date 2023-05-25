@@ -255,10 +255,10 @@ public class TaskManagement {
 
     public void displayMembersOfThisClub(LinkedList<Member> memberList) {
 
-        System.out.println("There are " + memberList.size() + " other members in your club.");
+        System.out.println("There are " + memberList.size() + " members in your club.");
         for(int i=0;i<memberList.size();i++) {
             Member thisMember = memberList.get(i);
-            System.out.println("Member " + i + ": " + thisMember.getName());
+            System.out.println("Member " + (i+1) + ": " + thisMember.getName());
         }
     }
 
