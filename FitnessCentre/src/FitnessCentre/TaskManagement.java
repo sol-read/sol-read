@@ -229,6 +229,7 @@ public class TaskManagement {
         String name = reader.nextLine();
         if(currentUser.getMemberType() == 'S') {
             newMember = new SingleClubMember('S',memberId,name,currentUser.getFees()*0.85,currentUser.getClub());
+            currentUser.setFees(currentUser.getFees()*0.85);
         } else {
             newMember = new MultiClubMember('M',memberId,name, currentUser.getFees(), 200);
             currentUser.addMembershipPoints(100);
@@ -237,7 +238,7 @@ public class TaskManagement {
         System.out.print("""
                 
                 New user: " + newMember.getName() + " added with ID: " + newMember.getMemberId() + ". 
-                Enjoy your bonus points!
+                Enjoy your referral bonus!
                 
                 """);
 
