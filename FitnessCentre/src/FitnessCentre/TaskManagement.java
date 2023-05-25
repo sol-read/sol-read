@@ -166,8 +166,7 @@ public class TaskManagement {
                 
                 1) Club Mercury
                 2) Club Neptune
-                3) Club Jupiter
-                \n""");
+                3) Club Jupiter""");
         System.out.print("\nEnter the ID of the club you'd like to know more about: ");
         int clubId = getIntInput();
 
