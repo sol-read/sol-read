@@ -183,18 +183,19 @@ public class TaskManagement {
         } System.out.println("\nClub with ID " + clubId + " could not be found.\n");
     }
 
-    public void memberLogin(LinkedList<Member> memberList, Member currentUser) {
+    public Member memberLogin(LinkedList<Member> memberList) {
 
-        System.out.println("Enter your member ID: ");
+        Member thisMember;
+        System.out.print("Enter your member ID: ");
         int memberId = getIntInput();
         for(int i=0;i<memberList.size();i++) {
             if(memberList.get(i).getMemberId() == memberId) {
-                currentUser = memberList.get(i);
-                return;
-            } else {
-                System.out.println("Could not find member with ID: " + memberId);
+                thisMember = memberList.get(i);
+                System.out.println("Hello, " + thisMember.getName() + "!");
+                return thisMember;
             }
-        }
+        } System.out.println("Could not find member with ID: " + memberId);
+        return null;
     }
 
     public int getMemberActionChoice() {
@@ -227,6 +228,13 @@ public class TaskManagement {
             newMember = new MultiClubMember('M',memberId,name, currentUser.getFees(), 200);
             currentUser.addMembershipPoints(100);
         }
+
+        System.out.print("""
+                
+                New user: " + newMember.getName() + " added with ID: " + newMember.getMemberId() + ". 
+                Enjoy your bonus points!
+                
+                """);
 
         memberList.add(newMember);
         return newMember;

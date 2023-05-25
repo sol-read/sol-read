@@ -43,12 +43,13 @@ public class Controller {
                     management.printClubInfo(clubList);
                 }
                 case 5 -> {
-                    management.memberLogin(memberList,currentUser);
+                    currentUser = management.memberLogin(memberList);
                     int memberChoice = management.getMemberActionChoice();
                     while(memberChoice != 4) {
                         switch(memberChoice) {
                             case 1 -> {
-
+                                Member newMember = management.referFriend(memberList,currentUser);
+                                handler.overwriteFile(memberList);
                             }
                             case 2 -> {
 
@@ -60,6 +61,7 @@ public class Controller {
                                 System.out.println("Invalid entry!");
                             }
                         }
+                        memberChoice = management.getMemberActionChoice();
                     }
                 }
                 default -> {
