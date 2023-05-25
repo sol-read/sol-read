@@ -201,14 +201,13 @@ public class MembershipManagement {
 
         int choice;
         System.out.println("""
-                
+                             
                 1) Refer a Friend
-                2) Meet others at your club
+                2) Meet others at your club(s)
                 3) End your membership
                 4) Logout
-                
+                                    
                 Please select an option:\t""");
-
         choice = getIntInput();
         return choice;
     }

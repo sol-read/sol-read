@@ -9,6 +9,10 @@ public class Controller {
 
         String memberString;
 
+        Admin admin = new Admin();
+
+        Member currentUser = admin;
+
         MembershipManagement management = new MembershipManagement();
         FileHandler handler = new FileHandler();
 
@@ -17,15 +21,19 @@ public class Controller {
 
         int choice = management.getChoice();
 
-        while (choice != 9) {
+        while (choice != -1) {
             switch (choice) {
                 case 1 -> {
                     memberString = management.addMembers(memberList, clubList);
                     handler.appendFile(memberString);
                 }
                 case 2 -> {
-                    management.removeMember(memberList);
-                    handler.overwriteFile(memberList);
+                    if(currentUser.getMemberType() != 'A') {
+                        System.out.println("You do not have permission to do that!");
+                    } else {
+                        management.removeMember(memberList);
+                        handler.overwriteFile(memberList);
+                    }
                 }
                 case 3 -> {
                     management.printMemberInfo(memberList);
@@ -33,6 +41,26 @@ public class Controller {
                 case 4 -> {
                     management.printClubOptions();
                     management.printClubInfo(clubList);
+                }
+                case 5 -> {
+                    management.memberLogin(memberList,currentUser);
+                    int memberChoice = management.getMemberActionChoice();
+                    while(memberChoice != 4) {
+                        switch(memberChoice) {
+                            case 1 -> {
+
+                            }
+                            case 2 -> {
+
+                            }
+                            case 3 -> {
+
+                            }
+                            default -> {
+                                System.out.println("Invalid entry!");
+                            }
+                        }
+                    }
                 }
                 default -> {
                     System.out.println("Invalid entry!");
