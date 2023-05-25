@@ -71,6 +71,7 @@ public class Controller {
             }
 
             choice = management.getChoice();
+            currentUser = admin;
         }
 
         System.out.println("\nThanks - goodbye!\n");
