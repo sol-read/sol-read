@@ -46,9 +46,10 @@ public class MembershipManagement {
                 2) Remove Member
                 3) Display Member Information
                 4) Display Club Information
-                9) Quit
+                5) Member Login
+                -1) Quit
                 
-                Please select an option: """);
+                Please select an option:\t""");
 
         choice = getIntInput();
         return choice;
@@ -179,11 +180,36 @@ public class MembershipManagement {
                         , clubInfo[0], clubInfo[1], clubInfo[2], memberList.size());
                 return;
             }
-
         } System.out.println("\nClub with ID " + clubId + " could not be found.\n");
-
-
-
     }
 
+    public void memberLogin(LinkedList<Member> memberList, Member currentUser) {
+
+        System.out.println("Enter your member ID: ");
+        int memberId = getIntInput();
+        for(int i=0;i<memberList.size();i++) {
+            if(memberList.get(i).getMemberId() == memberId) {
+                currentUser = memberList.get(i);
+                return;
+            } else {
+                System.out.println("Could not find member with ID: " + memberId);
+            }
+        }
+    }
+
+    public int getMemberActionChoice() {
+
+        int choice;
+        System.out.println("""
+                
+                1) Refer a Friend
+                2) Meet others at your club
+                3) End your membership
+                4) Logout
+                
+                Please select an option:\t""");
+
+        choice = getIntInput();
+        return choice;
+    }
 }
