@@ -228,8 +228,8 @@ public class TaskManagement {
         System.out.print("Enter your friend's name: ");
         String name = reader.nextLine();
         if(currentUser.getMemberType() == 'S') {
-            newMember = new SingleClubMember('S',memberId,name,currentUser.getFees()*0.85,currentUser.getClub());
-            currentUser.setFees(currentUser.getFees()*0.85);
+            newMember = new SingleClubMember('S',memberId,name,currentUser.getClub().getFees()*0.85,currentUser.getClub());
+            currentUser.setFees(currentUser.getClub().getFees()*0.85);
         } else {
             newMember = new MultiClubMember('M',memberId,name, currentUser.getFees(), 200);
             currentUser.addMembershipPoints(100);
