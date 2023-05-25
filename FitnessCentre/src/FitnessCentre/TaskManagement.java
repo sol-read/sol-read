@@ -190,17 +190,30 @@ public class TaskManagement {
 
     public Member memberLogin(LinkedList<Member> memberList) {
 
-        Member thisMember;
-        System.out.print("Enter your member ID: ");
-        int memberId = getIntInput();
-        for(int i=0;i<memberList.size();i++) {
-            if(memberList.get(i).getMemberId() == memberId) {
-                thisMember = memberList.get(i);
-                System.out.println("Hello, " + thisMember.getName() + "!");
-                return thisMember;
+        Member thisMember = null;
+        int memberIndex = -1;
+        boolean loggedIn = false;
+
+        do {
+            System.out.print("Enter your member ID: ");
+            int memberId = getIntInput();
+
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemberId() == memberId) {
+                    memberIndex = i;
+                    loggedIn = true;
+                    break;
+                }
             }
-        } System.out.println("Could not find member with ID: " + memberId);
-        return null;
+            if(!loggedIn) {
+                System.out.println("Could not find member with ID: " + memberId);
+            }
+        } while(!loggedIn);
+        if(memberIndex >= 0) {
+            thisMember = memberList.get(memberIndex);
+        }
+        System.out.println("Hello, " + thisMember.getName() + "!");
+        return thisMember;
     }
 
     public int getMemberActionChoice() {
