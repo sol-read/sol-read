@@ -13,7 +13,7 @@ public class Controller {
 
         Member currentUser = admin;
 
-        MembershipManagement management = new MembershipManagement();
+        TaskManagement management = new TaskManagement();
         FileHandler handler = new FileHandler();
 
         ArrayList<Club> clubList = handler.readClubFile();

@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MembershipManagement {
+public class TaskManagement {
 
     final private Scanner reader = new Scanner(System.in);
 
@@ -200,7 +200,7 @@ public class MembershipManagement {
     public int getMemberActionChoice() {
 
         int choice;
-        System.out.println("""
+        System.out.print("""
                              
                 1) Refer a Friend
                 2) Meet others at your club(s)
@@ -210,5 +210,25 @@ public class MembershipManagement {
                 Please select an option:\t""");
         choice = getIntInput();
         return choice;
+    }
+
+    public Member referFriend(LinkedList<Member> memberList, Member currentUser) {
+
+        Member newMember;
+        int memberId;
+        if(memberList.size() > 0) {
+            memberId = memberList.getLast().getMemberId() + 1;
+        } else { memberId = 1; }
+        System.out.print("Enter your friend's name: ");
+        String name = reader.nextLine();
+        if(currentUser.getMemberType() == 'S') {
+            newMember = new SingleClubMember('S',memberId,name,currentUser.getFees()*0.85,currentUser.getClub());
+        } else {
+            newMember = new MultiClubMember('M',memberId,name, currentUser.getFees(), 200);
+            currentUser.addMembershipPoints(100);
+        }
+
+        memberList.add(newMember);
+        return newMember;
     }
 }
