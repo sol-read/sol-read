@@ -47,7 +47,7 @@ public class Controller {
                     while(memberChoice != 4) {
                         switch(memberChoice) {
                             case 1 -> {
-                                Member newMember = management.referFriend(memberList,currentUser);
+                                management.referFriend(memberList,currentUser);
                                 handler.overwriteFile(memberList);
                             }
                             case 2 -> {

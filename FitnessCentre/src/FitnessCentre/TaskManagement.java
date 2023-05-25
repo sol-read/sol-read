@@ -218,7 +218,7 @@ public class TaskManagement {
         return choice;
     }
 
-    public Member referFriend(LinkedList<Member> memberList, Member currentUser) {
+    public void referFriend(LinkedList<Member> memberList, Member currentUser) {
 
         Member newMember;
         int memberId;
@@ -243,7 +243,6 @@ public class TaskManagement {
                 """,newMember.getName(),newMember.getMemberId());
 
         memberList.add(newMember);
-        return newMember;
     }
 
     public LinkedList<Member> getMembersOfThisClub(LinkedList<Member> memberList, Member currentUser) {
