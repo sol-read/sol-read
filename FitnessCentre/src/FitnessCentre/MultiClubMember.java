@@ -3,9 +3,9 @@ package FitnessCentre;
 public class MultiClubMember extends Member {
 
     private int membershipPoints;
-
-    public void setMembershipPoints(int membershipPoints) {
-        this.membershipPoints = membershipPoints;
+    @Override
+    public void addMembershipPoints(int membershipPoints) {
+        this.membershipPoints += membershipPoints;
     }
 
     public int getMembershipPoints() { return membershipPoints; }
@@ -18,6 +18,11 @@ public class MultiClubMember extends Member {
     @Override
     public String toString() {
         return super.toString() + ", " + membershipPoints;
+    }
+
+    @Override
+    public Club getClub() {
+        return null;
     }
 
 }

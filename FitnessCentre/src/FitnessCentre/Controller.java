@@ -9,7 +9,11 @@ public class Controller {
 
         String memberString;
 
-        MembershipManagement management = new MembershipManagement();
+        Admin admin = new Admin();
+
+        Member currentUser = admin;
+
+        TaskManagement management = new TaskManagement();
         FileHandler handler = new FileHandler();
 
         ArrayList<Club> clubList = handler.readClubFile();
@@ -17,22 +21,49 @@ public class Controller {
 
         int choice = management.getChoice();
 
-        while (choice != 9) {
+        while (choice != -1) {
             switch (choice) {
                 case 1 -> {
                     memberString = management.addMembers(memberList, clubList);
                     handler.appendFile(memberString);
                 }
                 case 2 -> {
-                    management.removeMember(memberList);
-                    handler.overwriteFile(memberList);
+                    if(currentUser.getMemberType() != 'A') {
+                        System.out.println("You do not have permission to do that!");
+                    } else {
+                        management.removeMember(memberList);
+                        handler.overwriteFile(memberList);
+                    }
                 }
                 case 3 -> {
                     management.printMemberInfo(memberList);
                 }
                 case 4 -> {
-                    management.printClubOptions();
                     management.printClubInfo(clubList);
+                }
+                case 5 -> {
+                    currentUser = management.memberLogin(memberList);
+                    int memberChoice = management.getMemberActionChoice();
+                    while(memberChoice != 4) {
+                        switch(memberChoice) {
+                            case 1 -> {
+                                management.referFriend(memberList,currentUser);
+                                handler.overwriteFile(memberList);
+                            }
+                            case 2 -> {
+                                LinkedList<Member> thisClubMemberList = management.getMembersOfThisClub(memberList,currentUser);
+                                management.displayMembersOfThisClub(thisClubMemberList);
+                            }
+                            case 3 -> {
+                                management.removeMember(memberList,currentUser);
+                                handler.overwriteFile(memberList);
+                            }
+                            default -> {
+                                System.out.println("Invalid entry!");
+                            }
+                        }
+                        memberChoice = management.getMemberActionChoice();
+                    }
                 }
                 default -> {
                     System.out.println("Invalid entry!");
@@ -40,6 +71,7 @@ public class Controller {
             }
 
             choice = management.getChoice();
+            currentUser = admin;
         }
 
         System.out.println("\nThanks - goodbye!\n");

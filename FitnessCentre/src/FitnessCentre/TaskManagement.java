@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class MembershipManagement {
+public class TaskManagement {
 
     final private Scanner reader = new Scanner(System.in);
 
@@ -46,9 +46,10 @@ public class MembershipManagement {
                 2) Remove Member
                 3) Display Member Information
                 4) Display Club Information
-                9) Quit
+                5) Member Login
+                -1) Quit
                 
-                Please select an option: """);
+                Please select an option:\t""");
 
         choice = getIntInput();
         return choice;
@@ -161,6 +162,11 @@ public class MembershipManagement {
 
     public void printClubInfo(ArrayList<Club> clubList) {
 
+        System.out.println("""
+                
+                1) Club Mercury
+                2) Club Neptune
+                3) Club Jupiter""");
         System.out.print("\nEnter the ID of the club you'd like to know more about: ");
         int clubId = getIntInput();
 
@@ -179,11 +185,118 @@ public class MembershipManagement {
                         , clubInfo[0], clubInfo[1], clubInfo[2], memberList.size());
                 return;
             }
-
         } System.out.println("\nClub with ID " + clubId + " could not be found.\n");
-
-
-
     }
 
+    public Member memberLogin(LinkedList<Member> memberList) {
+
+        Member thisMember = null;
+        int memberIndex = -1;
+        boolean loggedIn = false;
+
+        do {
+            System.out.print("Enter your member ID: ");
+            int memberId = getIntInput();
+
+            for (int i = 0; i < memberList.size(); i++) {
+                if (memberList.get(i).getMemberId() == memberId) {
+                    memberIndex = i;
+                    loggedIn = true;
+                    break;
+                }
+            }
+            if(!loggedIn) {
+                System.out.println("Could not find member with ID: " + memberId);
+            }
+        } while(!loggedIn);
+        if(memberIndex >= 0) {
+            thisMember = memberList.get(memberIndex);
+        }
+        System.out.println("Hello, " + thisMember.getName() + "!");
+        return thisMember;
+    }
+
+    public int getMemberActionChoice() {
+
+        int choice;
+        System.out.print("""
+                             
+                1) Refer a Friend
+                2) Meet others at your club(s)
+                3) End your membership
+                4) Logout
+                                    
+                Please select an option:\t""");
+        choice = getIntInput();
+        return choice;
+    }
+
+    public void referFriend(LinkedList<Member> memberList, Member currentUser) {
+
+        Member newMember;
+        int memberId;
+        if(memberList.size() > 0) {
+            memberId = memberList.getLast().getMemberId() + 1;
+        } else { memberId = 1; }
+        System.out.print("Enter your friend's name: ");
+        String name = reader.nextLine();
+        if(currentUser.getMemberType() == 'S') {
+            newMember = new SingleClubMember('S',memberId,name,currentUser.getClub().getFees()*0.85,currentUser.getClub());
+            currentUser.setFees(currentUser.getClub().getFees()*0.85);
+        } else {
+            newMember = new MultiClubMember('M',memberId,name, currentUser.getFees(), 200);
+            currentUser.addMembershipPoints(100);
+        }
+
+        System.out.printf("""
+                
+                New user: %s added with ID: %s. 
+                Enjoy your referral bonus!
+                
+                """,newMember.getName(),newMember.getMemberId());
+
+        memberList.add(newMember);
+    }
+
+    public LinkedList<Member> getMembersOfThisClub(LinkedList<Member> memberList, Member currentUser) {
+
+        LinkedList<Member> membersOfThisClubList = new LinkedList<>();
+
+        for(int i=0;i<memberList.size();i++) {
+            if(memberList.get(i).getClub() == currentUser.getClub()) {
+                membersOfThisClubList.add(memberList.get(i));
+            }
+        }
+
+        return membersOfThisClubList;
+    }
+
+    public void displayMembersOfThisClub(LinkedList<Member> memberList) {
+
+        System.out.println("There are " + memberList.size() + " members in your club.");
+        for(int i=0;i<memberList.size();i++) {
+            Member thisMember = memberList.get(i);
+            System.out.println("Member " + (i+1) + ": " + thisMember.getName());
+        }
+    }
+
+    public void removeMember(LinkedList<Member> memberList, Member currentUser) {
+
+        String input = "X";
+        while (!input.equals("Y")) {
+            System.out.print("Sorry to see you go! Are you sure you want to do this? Type 'Y' to confirm or any other key to go back: ");
+            input = reader.nextLine();
+            if(input.equals("Y")) {
+                System.out.println("We'll miss you, " + currentUser.getName() + "!");
+                for(int i = 0;i<memberList.size();i++) {
+                    if(memberList.get(i).getMemberId() == currentUser.getMemberId()) {
+                        memberList.remove(i);
+                    }
+                }
+            } else {
+                System.out.println("Phew! Glad you changed your mind!");
+                return;
+            }
+        }
+    }
 }

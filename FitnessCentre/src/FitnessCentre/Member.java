@@ -1,6 +1,6 @@
 package FitnessCentre;
 
-public class Member {
+public abstract class Member {
 
     private char memberType;
     private int memberId;
@@ -21,9 +21,11 @@ public class Member {
     }
 
     public char getMemberType() { return memberType; }
-    public int getMemberId() {return memberId; }
+    public int getMemberId() { return memberId; }
     public String getName() { return name; }
     public double getFees() { return fees; }
+    public abstract Club getClub();
+    public abstract void addMembershipPoints(int membershipPoints);
 
     public Member() {
         // Default constructor.
