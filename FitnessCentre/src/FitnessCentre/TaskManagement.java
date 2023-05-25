@@ -235,12 +235,12 @@ public class TaskManagement {
             currentUser.addMembershipPoints(100);
         }
 
-        System.out.print("""
+        System.out.printf("""
                 
-                New user: " + newMember.getName() + " added with ID: " + newMember.getMemberId() + ". 
+                New user: %s added with ID: %s. 
                 Enjoy your referral bonus!
                 
-                """);
+                """,newMember.getName(),newMember.getMemberId());
 
         memberList.add(newMember);
         return newMember;
