@@ -55,7 +55,8 @@ public class Controller {
 
                             }
                             case 3 -> {
-
+                                management.removeMember(memberList,currentUser);
+                                handler.overwriteFile(memberList);
                             }
                             default -> {
                                 System.out.println("Invalid entry!");

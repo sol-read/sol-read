@@ -239,4 +239,23 @@ public class TaskManagement {
         memberList.add(newMember);
         return newMember;
     }
+
+    public void removeMember(LinkedList<Member> memberList, Member currentUser) {
+
+        String input = "X";
+        while (!input.equals("Y")) {
+            System.out.print("Sorry to see you go! Are you sure you want to do this? Type 'Y' to confirm: ");
+            input = reader.nextLine();
+            if(input.equals("Y")) {
+                System.out.println("We'll miss you, " + currentUser.getName() + "!");
+                for(int i = 0;i<memberList.size();i++) {
+                    if(memberList.get(i).getMemberId() == currentUser.getMemberId()) {
+                        memberList.remove(i);
+                    }
+                }
+            } else {
+                System.out.println("Phew! Glad you changed your mind!");
+            }
+        }
+    }
 }
