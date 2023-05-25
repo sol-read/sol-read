@@ -52,7 +52,8 @@ public class Controller {
                                 handler.overwriteFile(memberList);
                             }
                             case 2 -> {
-
+                                LinkedList<Member> thisClubMemberList = management.getMembersOfThisClub(memberList,currentUser);
+                                management.displayMembersOfThisClub(thisClubMemberList);
                             }
                             case 3 -> {
                                 management.removeMember(memberList,currentUser);

@@ -240,6 +240,28 @@ public class TaskManagement {
         return newMember;
     }
 
+    public LinkedList<Member> getMembersOfThisClub(LinkedList<Member> memberList, Member currentUser) {
+
+        LinkedList<Member> membersOfThisClubList = new LinkedList<>();
+
+        for(int i=0;i<memberList.size();i++) {
+            if(memberList.get(i).getClub() == currentUser.getClub()) {
+                membersOfThisClubList.add(memberList.get(i));
+            }
+        }
+
+        return membersOfThisClubList;
+    }
+
+    public void displayMembersOfThisClub(LinkedList<Member> memberList) {
+
+        System.out.println("There are " + memberList.size() + " other members in your club.");
+        for(int i=0;i<memberList.size();i++) {
+            Member thisMember = memberList.get(i);
+            System.out.println("Member " + i + ": " + thisMember.getName());
+        }
+    }
+
     public void removeMember(LinkedList<Member> memberList, Member currentUser) {
 
         String input = "X";
