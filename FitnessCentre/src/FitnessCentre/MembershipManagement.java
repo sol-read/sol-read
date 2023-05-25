@@ -26,9 +26,9 @@ public class MembershipManagement {
         return choice;
     }
 
-    private void printClubOptions() {
+    protected void printClubOptions() {
 
-        System.out.println("1) Club Mercury");
+        System.out.println("\n1) Club Mercury");
         System.out.println("2) Club Neptune");
         System.out.println("3) Club Jupiter");
         System.out.println("4) Multiple Clubs");

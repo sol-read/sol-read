@@ -31,6 +31,7 @@ public class Controller {
                     management.printMemberInfo(memberList);
                 }
                 case 4 -> {
+                    management.printClubOptions();
                     management.printClubInfo(clubList);
                 }
                 default -> {
