@@ -162,6 +162,12 @@ public class TaskManagement {
 
     public void printClubInfo(ArrayList<Club> clubList) {
 
+        System.out.println("""
+                
+                1) Club Mercury
+                2) Club Neptune
+                3) Club Jupiter
+                \n""");
         System.out.print("\nEnter the ID of the club you'd like to know more about: ");
         int clubId = getIntInput();
 
@@ -266,7 +272,7 @@ public class TaskManagement {
 
         String input = "X";
         while (!input.equals("Y")) {
-            System.out.print("Sorry to see you go! Are you sure you want to do this? Type 'Y' to confirm: ");
+            System.out.print("Sorry to see you go! Are you sure you want to do this? Type 'Y' to confirm or any other key to go back: ");
             input = reader.nextLine();
             if(input.equals("Y")) {
                 System.out.println("We'll miss you, " + currentUser.getName() + "!");
@@ -277,6 +283,7 @@ public class TaskManagement {
                 }
             } else {
                 System.out.println("Phew! Glad you changed your mind!");
+                return;
             }
         }
     }
