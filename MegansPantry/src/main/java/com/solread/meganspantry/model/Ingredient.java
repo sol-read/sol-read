@@ -1,4 +1,4 @@
-package com.solread.meganspantry.Model;
+package com.solread.meganspantry.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
