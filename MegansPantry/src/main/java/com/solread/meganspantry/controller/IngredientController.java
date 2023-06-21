@@ -1,7 +1,7 @@
-package com.solread.meganspantry.Controller;
+package com.solread.meganspantry.controller;
 
-import com.solread.meganspantry.Model.Ingredient;
-import com.solread.meganspantry.Repository.IngredientRepository;
+import com.solread.meganspantry.model.Ingredient;
+import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +14,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientController {
-    IngredientRepository ingredientRepository;
+
+    private final IngredientRepository ingredientRepository;
+    public IngredientController(final IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
 
     @GetMapping(value = "/{id}")
     public Ingredient getIngredientById(@PathVariable("id") long id) {
