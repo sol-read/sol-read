@@ -7,7 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class MegansPantryApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MegansPantryApplication.class, args);
+
 	}
 
 }
