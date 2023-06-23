@@ -1,5 +1,7 @@
 package com.solread.meganspantry.model;
 
+import com.solread.meganspantry.enums.IngredientUnit;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;

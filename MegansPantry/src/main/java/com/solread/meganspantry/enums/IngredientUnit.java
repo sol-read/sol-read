@@ -1,4 +1,4 @@
-package com.solread.meganspantry.model;
+package com.solread.meganspantry.enums;
 
 public enum IngredientUnit {
 
