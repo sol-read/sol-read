@@ -9,6 +9,7 @@ public enum IngredientUnit {
     TEASPOONS,
     CLOVES,
     HALVES,
-    PINCHES
+    PINCHES,
+    TINS
 
 }
