@@ -6,6 +6,9 @@ public enum IngredientUnit {
     NONE,
     MILLILITRES,
     OUNCES,
-    TEASPOONS
+    TEASPOONS,
+    CLOVES,
+    HALVES,
+    PINCHES
 
 }
