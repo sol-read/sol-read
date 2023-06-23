@@ -2,10 +2,10 @@ package com.solread.meganspantry.enums;
 
 public enum IngredientUnit {
 
-    GRAM,
+    GRAMS,
     NONE,
     MILLILITRES,
     OUNCES,
-    TEASPOON
+    TEASPOONS
 
 }
