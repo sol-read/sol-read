@@ -15,7 +15,7 @@ public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -30,8 +30,8 @@ public class Ingredient {
     @Column(name = "vegan")
     private boolean vegan = false;
 
-    public Long getId() { return id; }
-    public void setId(Long id) {
+    public Integer getId() { return id; }
+    public void setId(Integer id) {
         this.id = id;
     }
 

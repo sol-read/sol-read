@@ -9,7 +9,7 @@ public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -27,7 +27,7 @@ public class Recipe {
     @Column(name = "vegan", nullable = false)
     private boolean isVegan = false;
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,7 +47,7 @@ public class Recipe {
         isVegan = vegan;
     }
 
-    public long getId() { return id; }
+    public Integer getId() { return id; }
     public String getName() { return name; }
     public List<Ingredient> getIngredients() { return ingredients; }
     public boolean isVegetarian() { return isVegetarian; }
