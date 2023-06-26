@@ -53,12 +53,23 @@ public class Recipe {
     public boolean isVegetarian() { return isVegetarian; }
     public boolean isVegan() { return isVegan; }
 
-    public Recipe(String name, List<Ingredient> ingredients, boolean isVegetarian, boolean isVegan) {
+    public Recipe(String name, List<Ingredient> ingredients) {
 
         this.name = name;
         this.ingredients = ingredients;
-        this.isVegetarian = isVegetarian;
-        this.isVegan = isVegan;
-    }
 
+        isVegetarian = true;
+        isVegan = true;
+        for(Ingredient ingredient : ingredients) {
+            if(!ingredient.isVegetarian()) {
+                isVegetarian = false;
+                isVegan = false;
+                break;
+            } else if(!ingredient.isVegan()) {
+                isVegan = false;
+                break;
+            }
+        }
+
+    }
 }
