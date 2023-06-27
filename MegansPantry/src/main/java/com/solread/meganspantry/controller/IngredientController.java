@@ -21,7 +21,7 @@ public class IngredientController {
     }
 
     @GetMapping(value = "/{id}")
-    public Ingredient getIngredientById(@PathVariable("id") long id) {
+    public Ingredient getIngredientById(@PathVariable("id") Integer id) {
         Optional<Ingredient> maybeIngredient = ingredientRepository.findById(id);
         if(!maybeIngredient.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
