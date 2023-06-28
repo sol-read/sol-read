@@ -25,10 +25,10 @@ public class Ingredient {
     private IngredientUnit unit = IngredientUnit.NONE;
 
     @Column(name = "vegetarian")
-    private boolean vegetarian = false;
+    private boolean isVegetarian = false;
 
     @Column(name = "vegan")
-    private boolean vegan = false;
+    private boolean isVegan = false;
 
     public Integer getId() { return id; }
     public void setId(Integer id) {
@@ -45,21 +45,21 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    public boolean isVegetarian() { return vegetarian; }
+    public boolean isVegetarian() { return isVegetarian; }
     public void setVegetarian(boolean vegetarian) {
-        this.vegetarian = vegetarian;
+        this.isVegetarian = vegetarian;
     }
 
-    public boolean isVegan() { return vegan; }
+    public boolean isVegan() { return isVegan; }
     public void setVegan(boolean vegan) {
-        this.vegan = vegan;
+        this.isVegan = vegan;
     }
 
     public Ingredient(String name, IngredientUnit unit, boolean vegetarian, boolean vegan) {
         this.name = name;
         this.unit = unit;
-        this.vegetarian = vegetarian;
-        this.vegan = vegan;
+        this.isVegetarian = vegetarian;
+        this.isVegan = vegan;
     }
 
 
