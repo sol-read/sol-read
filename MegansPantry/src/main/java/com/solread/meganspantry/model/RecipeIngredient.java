@@ -7,6 +7,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 @Table(name = "recipe_ingredient")
 public class RecipeIngredient {
 
+    public RecipeIngredient() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
