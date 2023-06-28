@@ -10,4 +10,5 @@ public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     public List<Recipe> findByIsVeganTrue();
     public List<Recipe> findByIsVegetarianTrue();
+    public Recipe findByName(String name);
 }
