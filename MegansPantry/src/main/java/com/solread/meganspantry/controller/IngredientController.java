@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +19,11 @@ public class IngredientController {
     private final IngredientRepository ingredientRepository;
     public IngredientController(final IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
+    }
+
+    @GetMapping(value = "/all")
+    public Iterable<Ingredient> getAllIngredients() {
+        return ingredientRepository.findAll();
     }
 
     @GetMapping(value = "/{id}")
