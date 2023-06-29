@@ -17,8 +17,13 @@ public class Recipe {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "recipe")
-    private List<RecipeIngredient> recipeIngredients;
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_ingredients",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id")
+        )
+    private List<Ingredient> ingredients;
 
     @Column(name = "vegetarian", nullable = false)
     private boolean isVegetarian = false;
@@ -34,8 +39,8 @@ public class Recipe {
         this.name = name;
     }
 
-    public void setIngredients(List<RecipeIngredient> ingredients) {
-        this.recipeIngredients = ingredients;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public void setVegetarian(boolean vegetarian) {
@@ -48,23 +53,23 @@ public class Recipe {
 
     public Integer getId() { return id; }
     public String getName() { return name; }
-    public List<RecipeIngredient> getIngredients() { return recipeIngredients; }
+    public List<Ingredient> getIngredients() { return ingredients; }
     public boolean isVegetarian() { return isVegetarian; }
     public boolean isVegan() { return isVegan; }
 
-    public Recipe(String name, List<RecipeIngredient> ingredients) {
+    public Recipe(String name, List<Ingredient> ingredients) {
 
         this.name = name;
-        this.recipeIngredients = ingredients;
+        this.ingredients = ingredients;
 
         isVegetarian = true;
         isVegan = true;
-        for(RecipeIngredient ingredient : ingredients) {
-            if(!ingredient.getIngredient().isVegetarian()) {
+        for(Ingredient ingredient : ingredients) {
+            if(!ingredient.isVegetarian()) {
                 isVegetarian = false;
                 isVegan = false;
                 break;
-            } else if(!ingredient.getIngredient().isVegan()) {
+            } else if(!ingredient.isVegan()) {
                 isVegan = false;
                 break;
             }

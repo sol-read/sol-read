@@ -1,24 +1,25 @@
 package com.solread.meganspantry.model;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Table(name = "recipe_ingredient")
-public class RecipeIngredient {
+public class RecipeIngredientAmount {
 
-    public RecipeIngredient() {
+    public RecipeIngredientAmount() {
     }
 
-    @Id
+    @EmbeddedId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
+    @MapsId("recipeId")
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @ManyToOne
+    @MapsId("ingredientId")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
@@ -50,7 +51,7 @@ public class RecipeIngredient {
         this.amount = amount;
     }
 
-    public RecipeIngredient(Integer id, Recipe recipe, Ingredient ingredient, Integer amount) {
+    public RecipeIngredientAmount(Integer id, Recipe recipe, Ingredient ingredient, Integer amount) {
 
         this.id = id;
         this.recipe = recipe;
