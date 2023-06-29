@@ -4,10 +4,7 @@ import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.model.Recipe;
 import com.solread.meganspantry.repository.RecipeRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -39,6 +36,13 @@ public class RecipeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return maybeRecipe.get();
+    }
+
+    @PutMapping(value = "/add")
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
+
+        Recipe addedRecipe = recipeRepository.save(recipe);
+        return recipe;
     }
 
 }
