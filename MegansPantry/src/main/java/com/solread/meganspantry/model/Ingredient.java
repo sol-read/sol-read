@@ -5,7 +5,6 @@ import com.solread.meganspantry.enums.IngredientUnit;
 import javax.persistence.*;
 import javax.persistence.GenerationType;
 import javax.persistence.EnumType;
-import java.util.List;
 
 @Entity
 @Table(name = "ingredient")
@@ -24,9 +23,6 @@ public class Ingredient {
     @Enumerated(EnumType.STRING)
     @Column(name = "unit")
     private IngredientUnit unit = IngredientUnit.NONE;
-
-    @ManyToMany(mappedBy = "ingredients")
-    private List<Recipe> recipes;
 
     @Column(name = "vegetarian")
     private boolean isVegetarian = false;
@@ -49,9 +45,6 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    public List<Recipe> getRecipes() { return recipes; }
-
-    public void setRecipes(List<Recipe> recipes) { this.recipes = recipes; }
 
     public boolean isVegetarian() { return isVegetarian; }
     public void setVegetarian(boolean vegetarian) {
@@ -63,10 +56,9 @@ public class Ingredient {
         this.isVegan = vegan;
     }
 
-    public Ingredient(String name, IngredientUnit unit, List<Recipe> recipes, boolean vegetarian, boolean vegan) {
+    public Ingredient(String name, IngredientUnit unit, boolean vegetarian, boolean vegan) {
         this.name = name;
         this.unit = unit;
-        this.recipes = recipes;
         this.isVegetarian = vegetarian;
         this.isVegan = vegan;
     }

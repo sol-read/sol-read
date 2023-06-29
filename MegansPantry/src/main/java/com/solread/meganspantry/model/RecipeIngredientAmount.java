@@ -1,7 +1,5 @@
 package com.solread.meganspantry.model;
 
-import com.solread.meganspantry.composite.IngredientAmount;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,17 +9,15 @@ public class RecipeIngredientAmount {
     public RecipeIngredientAmount() {
     }
 
-    @EmbeddedId
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private IngredientAmount id;
+    private Integer id;
 
     @ManyToOne
-    @MapsId("recipeId")
     @JoinColumn(name = "recipe_id")
     private Recipe recipe;
 
     @ManyToOne
-    @MapsId("ingredientId")
     @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
@@ -29,7 +25,7 @@ public class RecipeIngredientAmount {
     private Integer amount;
 
 
-    public IngredientAmount getId() { return id; }
+    public Integer getId() { return id; }
 
     public Recipe getRecipe() { return recipe; }
 
@@ -37,7 +33,7 @@ public class RecipeIngredientAmount {
 
     public Integer getAmount() { return amount; }
 
-    public void setId(IngredientAmount id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -53,7 +49,7 @@ public class RecipeIngredientAmount {
         this.amount = amount;
     }
 
-    public RecipeIngredientAmount(IngredientAmount id, Recipe recipe, Ingredient ingredient, Integer amount) {
+    public RecipeIngredientAmount(Integer id, Recipe recipe, Ingredient ingredient, Integer amount) {
 
         this.id = id;
         this.recipe = recipe;
