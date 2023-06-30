@@ -2,7 +2,9 @@ package com.solread.meganspantry.controller;
 
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.model.Recipe;
+import com.solread.meganspantry.model.RecipeIngredientAmount;
 import com.solread.meganspantry.repository.RecipeRepository;
+import com.solread.meganspantry.repository.RecipeIngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,9 +18,11 @@ import java.util.Optional;
 public class RecipeController {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeIngredientRepository recipeIngredientRepository;
 
-    public RecipeController(final RecipeRepository recipeRepository) {
+    public RecipeController(final RecipeRepository recipeRepository, final RecipeIngredientRepository recipeIngredientRepository) {
         this.recipeRepository = recipeRepository;
+        this.recipeIngredientRepository = recipeIngredientRepository;
     }
 
     @GetMapping(value = "vegetarian")
@@ -65,6 +69,24 @@ public class RecipeController {
 
         Recipe addedRecipe = recipeRepository.save(recipe);
         return recipe;
+    }
+
+    @GetMapping(value = "/canMake")
+    public List<Recipe> getRecipesThatCanBeMadeWithAvailableIngredients() {
+
+        Iterable<Recipe> allRecipes = recipeRepository.findAll();
+        Iterable<RecipeIngredientAmount> allRecipeIngredients = recipeIngredientRepository.findAll();
+        List<Recipe> recipesThatCanBeMade = new ArrayList<>();
+
+        for(Recipe recipe : allRecipes) {
+            for(Ingredient ingredient : recipe.getIngredients()) {
+                Integer amountNeeded = recipeIngredientRepository.findById(ingredient.getId()).get().getAmount();
+                if(ingredient.getAmountInPantry() < amountNeeded) {
+
+                }
+            }
+        }
+        return null;
     }
 
 }
