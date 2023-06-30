@@ -1,5 +1,7 @@
 package com.solread.meganspantry.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class Recipe {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "recipe_ingredient",
@@ -24,6 +27,9 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "ingredient_id")
     )
     private List<Ingredient> ingredients;
+
+    @Transient
+    private List<String> ingredientNames;
 
     @Column(name = "vegetarian", nullable = false)
     private boolean isVegetarian = false;
@@ -43,6 +49,8 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public void setIngredientNames(List<String> ingredientNames) { this.ingredientNames = ingredientNames; }
+
     public void setVegetarian(boolean vegetarian) {
         isVegetarian = vegetarian;
     }
@@ -54,6 +62,9 @@ public class Recipe {
     public Integer getId() { return id; }
     public String getName() { return name; }
     public List<Ingredient> getIngredients() { return ingredients; }
+
+    public List<String> getIngredientNames() { return ingredientNames; }
+
     public boolean isVegetarian() { return isVegetarian; }
     public boolean isVegan() { return isVegan; }
 
