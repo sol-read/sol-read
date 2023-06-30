@@ -30,6 +30,9 @@ public class Ingredient {
     @Column(name = "vegan")
     private boolean isVegan = false;
 
+    @Column(name = "amount_in_pantry")
+    private Integer amountInPantry;
+
     public Integer getId() { return id; }
     public void setId(Integer id) {
         this.id = id;
@@ -56,11 +59,15 @@ public class Ingredient {
         this.isVegan = vegan;
     }
 
-    public Ingredient(String name, IngredientUnit unit, boolean vegetarian, boolean vegan) {
+    public Integer getAmountInPantry() { return amountInPantry; }
+    public void setAmountInPantry(Integer amountInPantry) { this.amountInPantry = amountInPantry; }
+
+    public Ingredient(String name, IngredientUnit unit, boolean vegetarian, boolean vegan, Integer amountInPantry) {
         this.name = name;
         this.unit = unit;
         this.isVegetarian = vegetarian;
         this.isVegan = vegan;
+        this.amountInPantry = amountInPantry;
     }
 
 
