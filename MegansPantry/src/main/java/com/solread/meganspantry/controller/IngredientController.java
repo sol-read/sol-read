@@ -1,11 +1,13 @@
 package com.solread.meganspantry.controller;
 
+import com.solread.meganspantry.enums.IngredientUnit;
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,10 +39,35 @@ public class IngredientController {
         return maybeIngredient.get();
     }
 
-    @PutMapping(value = "/add")
+    @PutMapping(value = "/addNew")
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient newIngredient = ingredientRepository.save(ingredient);
         return newIngredient;
+    }
+
+    @GetMapping(value = "/{id}/addMore/{amount}")
+    public String addMoreOfAnIngredient(@PathVariable("id") Integer id, @PathVariable("amount") Integer amountToBeAdded) {
+        Optional<Ingredient> maybeIngredient = ingredientRepository.findById(id);
+        if(!maybeIngredient.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        Ingredient ingredient = maybeIngredient.get();
+        ingredient.addAmountToPantry(amountToBeAdded);
+
+        Ingredient savedIngredient = ingredientRepository.save(ingredient);
+        String returnString = "Successfully added " + amountToBeAdded + " ";
+        if(savedIngredient.getUnit() == IngredientUnit.NONE) {
+            returnString += savedIngredient.getName() + " to the pantry!";
+        } else {
+            returnString +=  savedIngredient.getUnit() + " of " + savedIngredient.getName() + " to the pantry!";
+        }
+
+        return returnString;
+    }
+
+    @GetMapping(value = "/inPantry")
+    public List<Ingredient> getIngredientsInPantry() {
+        return ingredientRepository.findByAmountInPantryGreaterThan(0);
     }
 
 }

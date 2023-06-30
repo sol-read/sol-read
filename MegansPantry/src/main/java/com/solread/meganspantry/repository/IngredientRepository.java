@@ -10,5 +10,6 @@ public interface IngredientRepository extends CrudRepository<Ingredient, Integer
 
     public List<Ingredient> findByIsVeganTrue();
     public List<Ingredient> findByIsVegetarianTrue();
+    public List<Ingredient> findByAmountInPantryGreaterThan(Integer amountInPantry);
 
 }
