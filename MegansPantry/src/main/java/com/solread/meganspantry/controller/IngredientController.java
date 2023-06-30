@@ -3,10 +3,7 @@ package com.solread.meganspantry.controller;
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -39,4 +36,11 @@ public class IngredientController {
         }
         return maybeIngredient.get();
     }
+
+    @PutMapping(value = "/add")
+    public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
+        Ingredient newIngredient = ingredientRepository.save(ingredient);
+        return newIngredient;
+    }
+
 }
