@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,20 @@ public class RecipeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
         return maybeRecipe.get();
+    }
+
+    @GetMapping(value = "/{id}/ingredients")
+    public List<String> getRecipeIngredients(@PathVariable("id") Integer id) {
+        Optional<Recipe> maybeRecipe = recipeRepository.findById(id);
+        if(!maybeRecipe.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        List<Ingredient> recipeIngredients = maybeRecipe.get().getIngredients();
+        List<String> ingredientList = new ArrayList<>();
+        for(Ingredient ingredient : recipeIngredients) {
+            ingredientList.add(ingredient.getName());
+        }
+        return ingredientList;
     }
 
     @PutMapping(value = "/add")
