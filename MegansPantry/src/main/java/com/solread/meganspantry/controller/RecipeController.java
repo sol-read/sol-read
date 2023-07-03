@@ -81,7 +81,9 @@ public class RecipeController {
         while(recipeIterator.hasNext()) {
             Recipe recipe = recipeIterator.next();
             for(Ingredient ingredient : recipe.getIngredients()) {
-                Integer amountNeeded = recipeIngredientRepository.findById(ingredient.getId()).get().getAmount();
+                Integer amountNeeded = recipeIngredientRepository
+                        .findByRecipeIdAndIngredientId(recipe.getId(),ingredient.getId())
+                        .getAmount();
                 if(ingredient.getAmountInPantry() < amountNeeded) {
                     recipeIterator.remove();
                     break;

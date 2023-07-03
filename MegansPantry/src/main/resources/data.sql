@@ -4,7 +4,7 @@ insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values 
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('milk', 'MILLILITRES',true, false,750);
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('bell peppers', 'NONE',true, true,1);
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('chicken breast', 'NONE',false, false,4);
-insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('black beans', 'TINS',true, true,2);
+insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('black beans', 'TINS',true, true,1);
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('tomatoes', 'NONE', true, true,2);
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('spinach', 'GRAMS', true, true,250);
 insert into ingredient (name, unit, vegetarian, vegan, amount_in_pantry) values ('pasta', 'GRAMS', true, true,3000);
@@ -32,7 +32,7 @@ insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,14,50
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,1,2);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,2,3);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,5,1);
-insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,7,1);
+insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,7,2);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,8,1);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,13,235);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,15,50);
