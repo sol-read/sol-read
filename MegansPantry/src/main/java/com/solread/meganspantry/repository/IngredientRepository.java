@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
 
+    List<Ingredient> findAll();
     public List<Ingredient> findByIsVeganTrue();
     public List<Ingredient> findByIsVegetarianTrue();
     public List<Ingredient> findByAmountInPantryGreaterThan(Integer amountInPantry);
