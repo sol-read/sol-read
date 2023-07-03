@@ -27,15 +27,15 @@ public class RecipeController {
     }
 
 
-    @GetMapping(value = "all")
+    @GetMapping(value = "/all")
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
     }
-    @GetMapping(value = "vegetarian")
+    @GetMapping(value = "/vegetarian")
     public List<Recipe> getVegetarianRecipes() {
         return recipeRepository.findByIsVegetarianTrue();
     }
-    @GetMapping(value = "vegan")
+    @GetMapping(value = "/vegan")
     public List<Recipe> getVeganRecipes() {
         return recipeRepository.findByIsVeganTrue();
     }

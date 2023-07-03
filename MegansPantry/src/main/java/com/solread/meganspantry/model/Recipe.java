@@ -75,7 +75,6 @@ public class Recipe {
 
         isVegetarian = true;
         isVegan = true;
-
         for(Ingredient ingredient : ingredients) {
             if(!ingredient.isVegetarian()) {
                 isVegetarian = false;
@@ -86,11 +85,9 @@ public class Recipe {
                 break;
             }
         }
-
         for(Ingredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
-
 
     }
 }
