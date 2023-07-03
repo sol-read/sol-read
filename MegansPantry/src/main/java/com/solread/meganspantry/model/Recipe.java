@@ -30,7 +30,8 @@ public class Recipe {
     private List<Ingredient> ingredients;
 
     @Transient
-    private List<String> ingredientNames;
+    @JsonIgnore
+    private List<String> ingredientNames = new ArrayList<>();
 
     @Column(name = "vegetarian", nullable = false)
     private boolean isVegetarian = false;
@@ -82,18 +83,14 @@ public class Recipe {
                 break;
             }
         }
-
-        ingredientNames = new ArrayList<>();
-        for(Ingredient ingredient : ingredients) {
-            ingredientNames.add(ingredient.getName());
-        }
+        populateIngredientNames();
     }
 
-    public void setIngredientNames(Recipe recipe) {
-        List<String> ingredientNames = new ArrayList<>();
+    public void populateIngredientNames() {
+
         for(Ingredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
-        recipe.setIngredientNames(ingredientNames);
+        setIngredientNames(ingredientNames);
     }
 }
