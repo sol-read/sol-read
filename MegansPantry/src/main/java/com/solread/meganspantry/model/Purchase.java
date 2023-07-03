@@ -5,9 +5,7 @@ import com.solread.meganspantry.repository.IngredientRepository;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -38,7 +36,7 @@ public class Purchase {
 
     @ManyToOne
     @JoinColumn(name = "shop_id")
-    private Integer shopId;
+    private Shop shop;
 
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
@@ -57,8 +55,8 @@ public class Purchase {
     public Integer getAmountBought() { return amountBought; }
     public void setAmountBought(Integer amountBought) { this.amountBought = amountBought; }
 
-    public Integer getShopId() { return shopId; }
-    public void setShopId(Integer shopId) { this.shopId = shopId; }
+    public Shop getShop() { return shop; }
+    public void setShop(Shop shop) { this.shop = shop; }
 
     public Purchase(Ingredient ingredient, BigDecimal cost, Integer amountBought) {
 
