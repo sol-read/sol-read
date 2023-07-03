@@ -5,6 +5,7 @@ import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.server.ResponseStatusException;
@@ -19,6 +20,8 @@ class IngredientControllerTest {
 
     @Mock
     private IngredientRepository ingredientRepository;
+
+    @InjectMocks
     private IngredientController ingredientController;
 
     @BeforeEach
