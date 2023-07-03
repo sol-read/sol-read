@@ -26,6 +26,11 @@ public class RecipeController {
         this.recipeIngredientRepository = recipeIngredientRepository;
     }
 
+
+    @GetMapping(value = "all")
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
+    }
     @GetMapping(value = "vegetarian")
     public List<Recipe> getVegetarianRecipes() {
         return recipeRepository.findByIsVegetarianTrue();
