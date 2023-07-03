@@ -24,7 +24,7 @@ insert into recipe (name, vegetarian, vegan) values ('tofu curry', true, true);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,2,2);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,3,3);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,12,100);
-insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,13,0);
+insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,13,100);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,11,350);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,14,50);
 
@@ -32,9 +32,9 @@ insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (1,14,50
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,1,2);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,2,3);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,5,1);
-insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,7,2);
+insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,7,1);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,8,1);
-insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,13,0);
+insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,13,235);
 insert into recipe_ingredient (recipe_id, ingredient_id, amount) values (2,15,50);
 
 -- Tofu Curry
