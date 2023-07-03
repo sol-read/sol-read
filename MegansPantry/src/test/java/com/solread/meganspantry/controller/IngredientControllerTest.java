@@ -3,16 +3,11 @@ package com.solread.meganspantry.controller;
 import com.solread.meganspantry.enums.IngredientUnit;
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;
-import org.aspectj.lang.annotation.After;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
