@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +25,7 @@ public class IngredientController {
     }
 
     @GetMapping(value = "/all")
-    public Iterable<Ingredient> getAllIngredients() {
+    public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
     }
 
