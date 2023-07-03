@@ -1,10 +1,12 @@
 package com.solread.meganspantry.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solread.meganspantry.enums.IngredientUnit;
 
 import javax.persistence.*;
 import javax.persistence.GenerationType;
 import javax.persistence.EnumType;
+import java.util.List;
 
 @Entity
 @Table(name = "ingredient")
@@ -32,6 +34,11 @@ public class Ingredient {
 
     @Column(name = "amount_in_pantry")
     private Integer amountInPantry;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ingredient")
+    @Transient
+    private List<Purchase> purchases;
 
     public Integer getId() { return id; }
     public void setId(Integer id) {
