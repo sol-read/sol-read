@@ -3,6 +3,7 @@ package com.solread.meganspantry.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,24 +38,21 @@ public class Recipe {
     @Column(name = "vegan", nullable = false)
     private boolean isVegan = false;
 
+
     public void setId(Integer id) {
         this.id = id;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
-
     public void setIngredientNames(List<String> ingredientNames) { this.ingredientNames = ingredientNames; }
 
     public void setVegetarian(boolean vegetarian) {
         isVegetarian = vegetarian;
     }
-
     public void setVegan(boolean vegan) {
         isVegan = vegan;
     }
@@ -62,11 +60,10 @@ public class Recipe {
     public Integer getId() { return id; }
     public String getName() { return name; }
     public List<Ingredient> getIngredients() { return ingredients; }
-
     public List<String> getIngredientNames() { return ingredientNames; }
-
     public boolean isVegetarian() { return isVegetarian; }
     public boolean isVegan() { return isVegan; }
+
 
     public Recipe(String name, List<Ingredient> ingredients) {
 
@@ -85,9 +82,18 @@ public class Recipe {
                 break;
             }
         }
+
+        ingredientNames = new ArrayList<>();
         for(Ingredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
+    }
 
+    public void setIngredientNames(Recipe recipe) {
+        List<String> ingredientNames = new ArrayList<>();
+        for(Ingredient ingredient : ingredients) {
+            ingredientNames.add(ingredient.getName());
+        }
+        recipe.setIngredientNames(ingredientNames);
     }
 }
