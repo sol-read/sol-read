@@ -47,13 +47,7 @@ public class RecipeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        Recipe recipe = maybeRecipe.get();
-        List<String> ingredientNames = new ArrayList<>();
-        for(Ingredient ingredient : recipe.getIngredients()) {
-            ingredientNames.add(ingredient.getName());
-        }
-        recipe.setIngredientNames(ingredientNames);
-        return recipe;
+        return maybeRecipe.get();
     }
 
     @GetMapping(value = "/{id}/ingredients")
