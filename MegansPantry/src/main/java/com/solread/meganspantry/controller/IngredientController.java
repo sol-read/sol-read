@@ -19,11 +19,6 @@ public class IngredientController {
         this.ingredientRepository = ingredientRepository;
     }
 
-    @GetMapping(value = "/test")
-    public String test() {
-        return "This is working";
-    }
-
     @GetMapping(value = "/all")
     public List<Ingredient> getAllIngredients() {
         return ingredientRepository.findAll();
