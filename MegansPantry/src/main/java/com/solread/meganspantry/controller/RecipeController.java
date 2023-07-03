@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,19 +75,21 @@ public class RecipeController {
     @GetMapping(value = "/canMake")
     public List<Recipe> getRecipesThatCanBeMadeWithAvailableIngredients() {
 
-        Iterable<Recipe> allRecipes = recipeRepository.findAll();
-        Iterable<RecipeIngredientAmount> allRecipeIngredients = recipeIngredientRepository.findAll();
-        List<Recipe> recipesThatCanBeMade = new ArrayList<>();
+        List<Recipe> recipesThatCanBeMade = recipeRepository.findAll();
 
-        for(Recipe recipe : allRecipes) {
+        Iterator<Recipe> recipeIterator = recipesThatCanBeMade.iterator();
+        while(recipeIterator.hasNext()) {
+            Recipe recipe = recipeIterator.next();
             for(Ingredient ingredient : recipe.getIngredients()) {
                 Integer amountNeeded = recipeIngredientRepository.findById(ingredient.getId()).get().getAmount();
                 if(ingredient.getAmountInPantry() < amountNeeded) {
-
+                    recipeIterator.remove();
+                    break;
                 }
             }
         }
-        return null;
+
+        return recipesThatCanBeMade;
     }
 
 }
