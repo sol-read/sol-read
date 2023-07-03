@@ -72,15 +72,5 @@ public class Ingredient {
         this.amountInPantry = amountInPantry;
     }
 
-    // Constructor used for testing
-    public Ingredient(Integer id, String name, IngredientUnit unit, boolean vegetarian, boolean vegan, Integer amountInPantry) {
-        this.id = id;
-        this.name = name;
-        this.unit = unit;
-        this.isVegetarian = vegetarian;
-        this.isVegan = vegan;
-        this.amountInPantry = amountInPantry;
-    }
-
 
 }

@@ -28,7 +28,6 @@ class IngredientControllerTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         ingredientController = new IngredientController(ingredientRepository);
-
     }
 
 
@@ -36,9 +35,9 @@ class IngredientControllerTest {
     void getAllIngredients() {
 
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient(1,"garlic",IngredientUnit.CLOVES,true,true,12));
-        ingredients.add(new Ingredient(2,"meatballs",IngredientUnit.TINS,false,false,3));
-        ingredients.add(new Ingredient(3,"cheese",IngredientUnit.GRAMS,true,false,550));
+        ingredients.add(new Ingredient());
+        ingredients.add(new Ingredient());
+        ingredients.add(new Ingredient());
         when(ingredientRepository.findAll()).thenReturn(ingredients);
 
         List<Ingredient> result = ingredientController.getAllIngredients();
@@ -49,7 +48,7 @@ class IngredientControllerTest {
 
     @Test
     void getIngredientById() {
-        Ingredient ingredient = new Ingredient(1,"cheese",IngredientUnit.GRAMS,true,false,200);
+        Ingredient ingredient = new Ingredient();
         when(ingredientRepository.findById(1)).thenReturn(Optional.of(ingredient));
         when(ingredientRepository.findById(2)).thenReturn(Optional.empty());
 
@@ -64,7 +63,7 @@ class IngredientControllerTest {
     @Test
     void addMoreOfAnIngredient() {
 
-        Ingredient ingredient = new Ingredient(1,"cheese",IngredientUnit.GRAMS,true,false,100);
+        Ingredient ingredient = new Ingredient("cheese",IngredientUnit.GRAMS,true,false,100);
         when(ingredientRepository.findById(1)).thenReturn(Optional.of(ingredient));
         when(ingredientRepository.save(ingredient)).thenReturn(ingredient);
 
