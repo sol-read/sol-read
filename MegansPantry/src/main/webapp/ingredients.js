@@ -6,7 +6,7 @@ const handle500Error = (json) => {
   }
 
   const renderError = (message) => {
-    alert(`Error calling Boots API: ${message}`);
+    alert(`Error calling Ingredients API: ${message}`);
   }
 
 const fetchAllIngredients = (cb) => {
@@ -23,7 +23,7 @@ const addNewIngredient = (cb) => {
     const unit = addIngredientForm["unit"].value;
     const vegetarian = addIngredientForm["vegetarian"].value;
     const vegan = addIngredientForm["vegan"].value;
-    const boot = {
+    const ingredient = {
       name,
       unit,
       vegetarian,
@@ -44,7 +44,7 @@ const addNewIngredient = (cb) => {
   }
 
 
-  const renderIngredientsListCallback = (ingredientsTableBody) => (boots) => {
+  const renderIngredientsListCallback = (ingredientsTableBody) => (ingredients) => {
     while (ingredientsTableBody.firstChild) {
       ingredientsTableBody.removeChild(ingredientsTableBody.firstChild);
     }
