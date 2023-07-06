@@ -45,9 +45,7 @@ const addNewIngredient = (cb) => {
 
 
   const renderIngredientsListCallback = (ingredientsTableBody) => (ingredients) => {
-    while (ingredientsTableBody.firstChild) {
-      ingredientsTableBody.removeChild(ingredientsTableBody.firstChild);
-    }
+    
     ingredients.forEach((ingredient) => {
       const ingredientsRow = document.createElement("tr");
       ingredientsRow.innerHTML = `
