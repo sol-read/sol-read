@@ -23,6 +23,7 @@ const addNewIngredient = (cb) => {
     const unit = addIngredientForm["unit"].value;
     const vegetarian = addIngredientForm["vegetarian"].value;
     const vegan = addIngredientForm["vegan"].value;
+    const amountInPantry = addIngredientForm["amountInPantry"].value;
     const ingredient = {
       name,
       unit,
@@ -54,6 +55,7 @@ const addNewIngredient = (cb) => {
         <td>${ingredient.unit}</td>
         <td>${ingredient.vegetarian}</td>
         <td>${ingredient.vegan}</td>
+        <td>${ingredient.amountInPantry}</td>
       `;
       ingredientsTableBody.appendChild(ingredientsRow);
     });
@@ -83,6 +85,7 @@ function populateIngredientsTable() {
             <td>${ingredient.unit}</td>
             <td>${ingredient.vegetarian}</td>
             <td>${ingredient.vegan}</td>
+            <td>${ingredient.amountInPantry}</td>
           `;
           tableBody.appendChild(row);
         });
