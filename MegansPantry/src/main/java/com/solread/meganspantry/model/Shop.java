@@ -44,10 +44,4 @@ public class Shop {
         this.supermarket = supermarket;
     }
 
-    public String unpackTheShopping() throws InvalidActionSoFarException {
-        for(Purchase purchase : purchases) {
-            purchase.addPurchaseToPantry(purchase);
-        }
-        return "Successfully went shopping!";
-    }
 }

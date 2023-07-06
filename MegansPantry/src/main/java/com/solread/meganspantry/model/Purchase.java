@@ -66,13 +66,4 @@ public class Purchase {
         this.amountBought = amountBought;
     }
 
-    public void addPurchaseToPantry(Purchase purchase) throws InvalidActionSoFarException {
-        Optional<Ingredient> boughtIngredient = ingredientRepository.findById(purchase.ingredient.getId());
-        if(!boughtIngredient.isPresent()) {
-            throw new InvalidActionSoFarException();
-        } else {
-            Ingredient purchasedIngredient = boughtIngredient.get();
-            purchasedIngredient.addAmountToPantry(purchase.amountBought);
-        }
-    }
 }
