@@ -41,7 +41,13 @@ public class ShoppingController {
 
     public String unpackTheShopping(List<Purchase> purchases) throws InvalidActionSoFarException {
         for(Purchase purchase : purchases) {
-            addPurchaseToPantry(purchase);
+            Optional<Ingredient> boughtIngredient = ingredientRepository.findById(purchase.getIngredient().getId());
+            if(!boughtIngredient.isPresent()) {
+                throw new InvalidActionSoFarException();
+            } else {
+                Ingredient purchasedIngredient = boughtIngredient.get();
+                purchasedIngredient.addAmountToPantry(purchase.getAmountBought());
+            }
         }
         return "Successfully went shopping!";
     }

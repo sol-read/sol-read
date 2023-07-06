@@ -1,5 +1,7 @@
 package com.solread.meganspantry.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,6 +14,8 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Transient
+    @JsonIgnore
     @OneToMany(mappedBy = "shop")
     @Column(name = "purchases")
     private List<Purchase> purchases;

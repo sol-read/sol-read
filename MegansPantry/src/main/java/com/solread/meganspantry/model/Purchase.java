@@ -7,10 +7,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "shop")
+@Table(name = "purchase")
 public class Purchase {
 
-    private IngredientRepository ingredientRepository;
     public Purchase() {
     }
 
