@@ -69,6 +69,9 @@ public class Ingredient {
     public Integer getAmountInPantry() { return amountInPantry; }
     public void setAmountInPantry(Integer amountInPantry) { this.amountInPantry = amountInPantry; }
 
+    public List<Purchase> getPurchases() { return purchases; }
+    public void setPurchases(List<Purchase> purchases) { this.purchases = purchases; }
+
     public void addAmountToPantry(Integer amountToAdd) { amountInPantry += amountToAdd; }
 
     public Ingredient(String name, IngredientUnit unit, boolean vegetarian, boolean vegan, Integer amountInPantry) {
