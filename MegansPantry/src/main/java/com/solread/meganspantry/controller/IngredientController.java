@@ -33,7 +33,7 @@ public class IngredientController {
         return maybeIngredient.get();
     }
 
-    @PutMapping(value = "/addNew")
+    @PutMapping(value = "/add")
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient newIngredient = ingredientRepository.save(ingredient);
         return newIngredient;
