@@ -62,7 +62,7 @@ fetchAllRecipes(
 
 function populateRecipesTable() {
     
-  fetch("/ingredients/all")
+  fetch("/recipes/all")
     .then(response => response.json())
     .then(data => {
       
