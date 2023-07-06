@@ -55,3 +55,32 @@ const addNewIngredient = (cb) => {
       document.getElementById("ingredientsTableBody")
     )
   );
+
+
+function populateIngredientsTable() {
+    
+    fetch("/ingredients/all")
+      .then(response => response.json())
+      .then(data => {
+        
+        const tableBody = document.getElementById("ingredientsTableBody");
+  
+        
+        data.forEach(ingredient => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${ingredient.id}</td>
+            <td>${ingredient.name}</td>
+            <td>${ingredient.unit}</td>
+            <td>${ingredient.vegetarian}</td>
+            <td>${ingredient.vegan}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error("Error fetching data:", error));
+  }
+  
+  // Call the function to populate the table when the page loads
+  window.addEventListener("load", populateIngredientsTable);
+  
