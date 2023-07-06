@@ -5,6 +5,10 @@ const handle500Error = (json) => {
   return json
 }
 
+const renderError = (message) => {
+  alert(`Error calling Ingredients API: ${message}`);
+}
+
 const fetchAllRecipes = (cb) => {
     fetch("/recipes/all")
     .then(res => res.json())
