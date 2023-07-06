@@ -1,3 +1,10 @@
+const handle500Error = (json) => {
+    if (json.status && json.status === 500) {
+      throw new Error(json.message)
+    }
+    return json
+  }
+
 const fetchAllIngredients = (cb) => {
     fetch("/ingredients/all")
     .then(res => res.json())
