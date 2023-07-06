@@ -1,7 +1,5 @@
 package com.solread.meganspantry.model;
 
-import com.solread.meganspantry.Exception.InvalidActionSoFarException;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,12 +1,10 @@
 package com.solread.meganspantry.model;
 
-import com.solread.meganspantry.Exception.InvalidActionSoFarException;
 import com.solread.meganspantry.repository.IngredientRepository;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Entity
 @Table(name = "shop")
