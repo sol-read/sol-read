@@ -5,6 +5,10 @@ const handle500Error = (json) => {
     return json
   }
 
+  const renderError = (message) => {
+    alert(`Error calling Boots API: ${message}`);
+  }
+
 const fetchAllIngredients = (cb) => {
     fetch("/ingredients/all")
     .then(res => res.json())
