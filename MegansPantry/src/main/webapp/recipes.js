@@ -20,8 +20,9 @@ const fetchAllRecipes = (cb) => {
 const addNewRecipe = (cb) => {
   const addRecipeForm = document.getElementById("addNewRecipe").elements;
   const name = addRecipeForm["name"].value;
-  const type = addRecipeForm[""].value;
-  const boot = {
+  const vegetarian = addRecipeForm["vegetarian"].value;
+  const vegan = addRecipeForm["vegan"].value;
+  const recipe = {
     name,
     ingredients
   }
@@ -38,3 +39,49 @@ const addNewRecipe = (cb) => {
     })
     .catch(renderError);
 }
+
+const renderRecipeListCallback = (recipesTableBody) => (recipes) => {
+    
+  recipes.forEach((recipe) => {
+    const recipesRow = document.createElement("tr");
+    recipesRow.innerHTML = `
+      <td>${recipe.id}</td>
+      <td>${recipe.name}</td>
+      <td>${recipe.vegetarian}</td>
+      <td>${recipe.vegan}</td>
+    `;
+    recipesTableBody.appendChild(recipesRow);
+  });
+}
+
+fetchAllRecipes(
+  renderRecipeListCallback(
+    document.getElementById("recipesTableBody")
+  )
+);
+
+function populateRecipesTable() {
+    
+  fetch("/ingredients/all")
+    .then(response => response.json())
+    .then(data => {
+      
+      const tableBody = document.getElementById("recipesTableBody");
+
+      
+      data.forEach(recipe => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${recipe.id}</td>
+          <td>${recipe.name}</td>
+          <td>${recipe.vegetarian}</td>
+          <td>${recipe.vegan}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(error => console.error("Error fetching data:", error));
+}
+
+// Call the function to populate the table when the page loads
+window.addEventListener("load", populateRecipesTable);

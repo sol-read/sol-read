@@ -28,7 +28,8 @@ const addNewIngredient = (cb) => {
       name,
       unit,
       vegetarian,
-      vegan
+      vegan,
+      amountInPantry
     }
     fetch("/ingredients/add", {
       method: "POST",
