@@ -86,9 +86,6 @@ function populateRecipesTable() {
 // Call the function to populate the table when the page loads
 window.addEventListener("load", populateRecipesTable);
 
-const applyFiltersButton = document.getElementById("applyFiltersButton");
-applyFiltersButton.addEventListener("click", applyFilters);
-
 function applyFilters() {
   const vegetarianFilter = document.getElementById("vegetarianFilter");
   const veganFilter = document.getElementById("veganFilter");
@@ -114,3 +111,6 @@ function applyFilters() {
     })
     .catch(renderError);
 }
+
+const applyFiltersButton = document.getElementById("applyFiltersButton");
+applyFiltersButton.addEventListener("click", applyFilters);
