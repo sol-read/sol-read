@@ -85,3 +85,32 @@ function populateRecipesTable() {
 
 // Call the function to populate the table when the page loads
 window.addEventListener("load", populateRecipesTable);
+
+const applyFiltersButton = document.getElementById("applyFiltersButton");
+applyFiltersButton.addEventListener("click", applyFilters);
+
+function applyFilters() {
+  const vegetarianFilter = document.getElementById("vegetarianFilter");
+  const veganFilter = document.getElementById("veganFilter");
+  
+  // Prepare filter query parameters based on checkbox states
+  const filterParams = new URLSearchParams();
+  if (vegetarianFilter.checked) {
+    filterParams.set("vegetarian", "true");
+  }
+  if (veganFilter.checked) {
+    filterParams.set("vegan", "true");
+  }
+
+  fetch(`/recipes/all?${filterParams.toString()}`)
+    .then((res) => res.json())
+    .then(handle500Error)
+    .then((json) => {
+      const recipesTableBody = document.getElementById("recipesTableBody");
+      recipesTableBody.innerHTML = ""; // Clear existing table rows
+      
+      // Render filtered recipes
+      renderRecipeListCallback(recipesTableBody)(json);
+    })
+    .catch(renderError);
+}
