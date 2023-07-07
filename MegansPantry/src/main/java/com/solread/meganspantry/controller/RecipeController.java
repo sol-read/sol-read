@@ -28,16 +28,26 @@ public class RecipeController {
 
 
     @GetMapping(value = "/all")
-    public List<Recipe> getAllRecipes() {
-        return recipeRepository.findAll();
+    public List<Recipe> getAllRecipes(@RequestParam(required = false) Boolean vegetarian,
+                                      @RequestParam(required = false) Boolean vegan) {
+        if(vegan == null && vegetarian == null) {
+            return recipeRepository.findAll();
+        } else if(vegan == null) {
+            return recipeRepository.findByIsVegetarian(vegetarian);
+        } else if(vegetarian == null) {
+            return recipeRepository.findByIsVegan(vegan);
+        } else {
+            return recipeRepository.findByIsVegetarianAndIsVegan(vegetarian,vegan);
+        }
     }
+
     @GetMapping(value = "/vegetarian")
     public List<Recipe> getVegetarianRecipes() {
-        return recipeRepository.findByIsVegetarianTrue();
+        return recipeRepository.findByIsVegetarian(true);
     }
     @GetMapping(value = "/vegan")
     public List<Recipe> getVeganRecipes() {
-        return recipeRepository.findByIsVeganTrue();
+        return recipeRepository.findByIsVegan(true);
     }
 
     @GetMapping(value = "/{id}")
