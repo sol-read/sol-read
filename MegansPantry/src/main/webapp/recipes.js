@@ -50,7 +50,7 @@ function populateTableWithRecipes(recipes) {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${recipe.id}</td>
-      <td>${recipe.name}</td>
+      <td><a href="/recipes/${recipe.id}/ingredients">${recipe.name}</a></td>
       <td>${recipe.vegetarian}</td>
       <td>${recipe.vegan}</td>
     `;
