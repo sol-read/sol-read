@@ -60,66 +60,40 @@ const renderError = (message) => {
 //   )
 // );
 
-function renderListAsTable(list, tableBodyElement) {
-  // Clear existing table rows
-  tableBodyElement.innerHTML = "";
-
-  // Iterate over the list and create table rows
-  list.forEach((item) => {
-    const row = document.createElement("tr");
-
-    // Iterate over the properties of each item and create table cells
-    Object.values(item).forEach((value) => {
-      const cell = document.createElement("td");
-      cell.textContent = value;
-      row.appendChild(cell);
+function fetchData(apiEndpoint) {
+  return fetch(apiEndpoint)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      throw error;
     });
+}
 
-    tableBodyElement.appendChild(row);
+function populateTableWithRecipes(recipes) {
+  const tableBody = document.getElementById("recipesTableBody");
+  tableBody.innerHTML = "";
+
+  recipes.forEach((recipe) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${recipe.id}</td>
+      <td>${recipe.name}</td>
+      <td>${recipe.vegetarian}</td>
+      <td>${recipe.vegan}</td>
+    `;
+    tableBody.appendChild(row);
   });
 }
 
-function fetchListAndRenderTable(apiEndpoint, tableBodyElement) {
-  fetch(apiEndpoint)
-    .then((response) => response.json())
-    .then((list) => renderListAsTable(list, tableBodyElement))
-    .catch((error) => console.error("Error fetching data:", error));
-}
-
-
-
-function fetchAllRecipesNew() {
-  const tableBodyElement = document.getElementById("recipesTableBody");
-  fetchListAndRenderTable("/recipes/all", tableBodyElement);
-}
-
-fetchAllRecipesNew();
-
-// function populateRecipesTable() {
-    
-//   fetch("/recipes/all")
-//     .then(response => response.json())
-//     .then(data => {
-      
-//       const tableBody = document.getElementById("recipesTableBody");
-
-      
-//       data.forEach(recipe => {
-//         const row = document.createElement("tr");
-//         row.innerHTML = `
-//           <td>${recipe.id}</td>
-//           <td>${recipe.name}</td>
-//           <td>${recipe.vegetarian}</td>
-//           <td>${recipe.vegan}</td>
-//         `;
-//         tableBody.appendChild(row);
-//       });
-//     })
-//     .catch(error => console.error("Error fetching data:", error));
-// }
-
-// // Call the function to populate the table when the page loads
-// window.addEventListener("load", populateRecipesTable);
+fetchData("/recipes/all")
+  .then((recipes) => {
+    populateTableWithRecipes(recipes);
+  })
+  .catch((error) => {
+    console.error("Error fetching data: ", error);
+    throw error;
+  });
 
 // function applyFilters() {
 //   const vegetarianFilter = document.getElementById("vegetarianFilter");
