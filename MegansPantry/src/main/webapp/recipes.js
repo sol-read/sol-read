@@ -9,14 +9,6 @@ const renderError = (message) => {
   alert(`Error calling Ingredients API: ${message}`);
 }
 
-// const fetchAllRecipes = (cb) => {
-//     fetch("/recipes/all")
-//     .then(res => res.json())
-//     .then(handle500Error)
-//     .then(json => cb(json))
-//     .catch(renderError);
-// }
-
 // const addNewRecipe = (cb) => {
 //   const addRecipeForm = document.getElementById("addNewRecipe").elements;
 //   const name = addRecipeForm["name"].value;
@@ -39,26 +31,6 @@ const renderError = (message) => {
 //     })
 //     .catch(renderError);
 // }
-
-// const renderRecipeListCallback = (recipesTableBody) => (recipes) => {
-    
-//   recipes.forEach((recipe) => {
-//     const recipesRow = document.createElement("tr");
-//     recipesRow.innerHTML = `
-//       <td>${recipe.id}</td>
-//       <td>${recipe.name}</td>
-//       <td>${recipe.vegetarian}</td>
-//       <td>${recipe.vegan}</td>
-//     `;
-//     recipesTableBody.appendChild(recipesRow);
-//   });
-// }
-
-// fetchAllRecipes(
-//   renderRecipeListCallback(
-//     document.getElementById("recipesTableBody")
-//   )
-// );
 
 function fetchData(apiEndpoint) {
   return fetch(apiEndpoint)
