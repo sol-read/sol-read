@@ -1,4 +1,4 @@
-.banner {
+#banner {
     background-color: #008080;
     padding: 10px;
     text-align: center;
@@ -8,6 +8,6 @@
     right: 0;
 }
 
-.banner a {
-    margin-right: 10px;
+#banner a {
+    margin-right: 25px;
 }
