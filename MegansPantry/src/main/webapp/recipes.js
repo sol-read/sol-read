@@ -93,6 +93,8 @@ function fetchAllRecipesNew() {
   fetchListAndRenderTable("/recipes/all", tableBodyElement);
 }
 
+fetchAllRecipesNew();
+
 // function populateRecipesTable() {
     
 //   fetch("/recipes/all")
