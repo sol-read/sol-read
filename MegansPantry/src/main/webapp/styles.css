@@ -6,9 +6,8 @@
     top: 0;
     left: 0;
     right: 0;
-    overflow: auto;
 }
 
 .banner a {
-    margin-right: 25px;
+    margin-right: 10px;
 }
