@@ -7,6 +7,7 @@ import com.solread.meganspantry.repository.RecipeRepository;
 import com.solread.meganspantry.repository.RecipeIngredientRepository;
 import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -77,7 +78,7 @@ public class RecipeController {
     }
 
     @PostMapping(value = "/add",
-                consumes = "APPLICATION_JSON_VALUE")
+                consumes = MediaType.APPLICATION_JSON_VALUE)
     public Recipe addRecipe(@RequestParam(name = "recipeName") String recipeName,
                             @RequestParam(name = "ingredientIds") List<Integer> ingredientIds,
                             @RequestParam(name = "ingredientAmounts") List<Integer> ingredientAmounts) {
