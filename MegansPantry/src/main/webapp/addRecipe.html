@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a Recipe</title>
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+    <script src="addRecipe.js"></script>
+</head>
+<body>
+  <div class="banner">
+    <a href="/">Home</a>
+    <a href="./recipes.html">Recipes</a>
+    <a href="./ingredients.html">Ingredients</a>
+    <a href="./addRecipe.html">Add Recipe Portal</a>
+  </div>
+  <br />
+  <div class="add-recipe-container">
+    <h2><u>Add a Recipe</u></h2>
+      <h4>To start over, refresh the page.</h4>
+    <form id="addNewRecipe" class="recipeForm">
+      <div class="recipe-form-entry">
+        <label for="recipeName">Name: </label>
+        <input type="text" id="recipeName" name="name">
+      </div>
+    </form>
+  </div>
+  <br />
+
+  <div id="ingredientSelector">
+      <select name="ingredients" id="ingredientSelection">
+      </select>
+      <button id="addIngredientToListButton">Add this ingredient</button>
+      <br />
+      <u>Selected Ingredients</u>
+      <ul id="selectedIngredientList">
+      </ul>
+      <button id="addThisRecipe">Finish Recipe</button>
+
+  </div>
+
+</body>
+</html>
