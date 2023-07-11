@@ -67,31 +67,28 @@ fetchData("/recipes/all")
     throw error;
   });
 
-// function applyFilters() {
-//   const vegetarianFilter = document.getElementById("vegetarianFilter");
-//   const veganFilter = document.getElementById("veganFilter");
+function applyFilters() {
+  const vegetarianFilter = document.getElementById("vegetarianFilter");
+  const veganFilter = document.getElementById("veganFilter");
   
-//   // Prepare filter query parameters based on checkbox states
-//   const filterParams = new URLSearchParams();
-//   if (vegetarianFilter.checked) {
-//     filterParams.set("vegetarian", "true");
-//   }
-//   if (veganFilter.checked) {
-//     filterParams.set("vegan", "true");
-//   }
+  // Prepare filter query parameters based on checkbox states
+  const filterParams = new URLSearchParams();
+  if (vegetarianFilter.checked) {
+    filterParams.set("vegetarian", "true");
+  }
+  if (veganFilter.checked) {
+    filterParams.set("vegan", "true");
+  }
 
-//   fetch(`/recipes/all?${filterParams.toString()}`)
-//     .then((res) => res.json())
-//     .then(handle500Error)
-//     .then((json) => {
-//       const recipesTableBody = document.getElementById("recipesTableBody");
-//       recipesTableBody.innerHTML = ""; // Clear existing table rows
-      
-//       // Render filtered recipes
-//       renderRecipeListCallback(recipesTableBody)(json);
-//     })
-//     .catch(renderError);
-// }
+  fetchData(`/recipes/all?${filterParams.toString()}`)
+    .then((recipes) => {
+      populateTableWithRecipes(recipes);
+    })
+    .catch((error) => {
+      console.error("Error fetching data: ", error);
+      throw error;
+    });
+}
 
-// const applyFiltersButton = document.getElementById("applyFiltersButton");
-// applyFiltersButton.addEventListener("click", applyFilters);
+const applyFiltersButton = document.getElementById("applyFiltersButton");
+applyFiltersButton.addEventListener("click", applyFilters);
