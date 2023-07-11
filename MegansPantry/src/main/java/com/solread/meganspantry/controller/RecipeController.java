@@ -5,14 +5,12 @@ import com.solread.meganspantry.model.Recipe;
 import com.solread.meganspantry.model.RecipeIngredientAmount;
 import com.solread.meganspantry.repository.RecipeRepository;
 import com.solread.meganspantry.repository.RecipeIngredientRepository;
+import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/recipes")
@@ -20,10 +18,14 @@ public class RecipeController {
 
     private final RecipeRepository recipeRepository;
     private final RecipeIngredientRepository recipeIngredientRepository;
+    private final IngredientRepository ingredientRepository;
 
-    public RecipeController(final RecipeRepository recipeRepository, final RecipeIngredientRepository recipeIngredientRepository) {
+    public RecipeController(final RecipeRepository recipeRepository,
+                            final RecipeIngredientRepository recipeIngredientRepository,
+                            final IngredientRepository ingredientRepository) {
         this.recipeRepository = recipeRepository;
         this.recipeIngredientRepository = recipeIngredientRepository;
+        this.ingredientRepository = ingredientRepository;
     }
 
 
@@ -74,11 +76,23 @@ public class RecipeController {
         return ingredientList;
     }
 
-    @PutMapping(value = "/add")
-    public Recipe addRecipe(@RequestBody Recipe recipe) {
+    @PostMapping(value = "/add")
+    public Recipe addRecipe(@RequestParam(name = "recipeName") String recipeName,
+                            @RequestParam(name = "ingredientIds") List<Integer> ingredientIds,
+                            @RequestParam(name = "ingredientAmounts") List<Integer> ingredientAmounts) {
 
-        Recipe addedRecipe = recipeRepository.save(recipe);
-        return recipe;
+        List<Ingredient> ingredientList = new ArrayList<>();
+        for(Integer ingredientId : ingredientIds) {
+            ingredientList.add(ingredientRepository.findById(ingredientId).get());
+        }
+        Recipe newRecipe = new Recipe(recipeName, ingredientList);
+        Recipe addedRecipe = recipeRepository.save(newRecipe);
+
+        for(int i=0;i<ingredientAmounts.size();i++) {
+            RecipeIngredientAmount recipeIngredientAmount = recipeIngredientRepository.findByRecipeIdAndIngredientId(addedRecipe.getId(),ingredientIds.get(i));
+            recipeIngredientAmount.setAmount(ingredientAmounts.get(i));
+        }
+        return addedRecipe;
     }
 
     @GetMapping(value = "/canMake")
