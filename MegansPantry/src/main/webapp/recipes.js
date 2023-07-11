@@ -70,8 +70,7 @@ fetchData("/recipes/all")
 function applyFilters() {
   const vegetarianFilter = document.getElementById("vegetarianFilter");
   const veganFilter = document.getElementById("veganFilter");
-  
-  // Prepare filter query parameters based on checkbox states
+
   const filterParams = new URLSearchParams();
   if (vegetarianFilter.checked) {
     filterParams.set("vegetarian", "true");
@@ -90,5 +89,9 @@ function applyFilters() {
     });
 }
 
-const applyFiltersButton = document.getElementById("applyFiltersButton");
-applyFiltersButton.addEventListener("click", applyFilters);
+window.addEventListener("DOMContentLoaded", (event) => {
+    const applyFiltersButton = document.getElementById("applyFiltersButton");
+    if (applyFiltersButton) {
+        applyFiltersButton.addEventListener('click',applyFilters);
+    }
+});
