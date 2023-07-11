@@ -9,6 +9,16 @@ const handle500Error = (json) => {
     alert(`Error calling Ingredients API: ${message}`);
   }
 
+function fetchData(apiEndpoint) {
+  return fetch(apiEndpoint)
+    .then((response) => response.json())
+    .then((data) => data)
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      throw error;
+    });
+}
+
 function populateTableWithIngredients(ingredients) {
   const tableBody = document.getElementById("ingredientsTableBody");
   tableBody.innerHTML = "";
