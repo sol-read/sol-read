@@ -76,7 +76,8 @@ public class RecipeController {
         return ingredientList;
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add",
+                consumes = "APPLICATION_JSON_VALUE")
     public Recipe addRecipe(@RequestParam(name = "recipeName") String recipeName,
                             @RequestParam(name = "ingredientIds") List<Integer> ingredientIds,
                             @RequestParam(name = "ingredientAmounts") List<Integer> ingredientAmounts) {
