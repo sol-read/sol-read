@@ -89,7 +89,7 @@ function applyFilters() {
     });
 }
 
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", () => {
     const applyFiltersButton = document.getElementById("applyFiltersButton");
     if (applyFiltersButton) {
         applyFiltersButton.addEventListener('click',applyFilters);

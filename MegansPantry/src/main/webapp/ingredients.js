@@ -9,91 +9,47 @@ const handle500Error = (json) => {
     alert(`Error calling Ingredients API: ${message}`);
   }
 
-const fetchAllIngredients = (cb) => {
-    fetch("/ingredients/all")
-    .then(res => res.json())
-    .then(handle500Error)
-    .then(json => cb(json))
-    .catch(renderError);
+function populateTableWithIngredients(ingredients) {
+  const tableBody = document.getElementById("ingredientsTableBody");
+  tableBody.innerHTML = "";
+
+  ingredients.forEach((ingredient) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${ingredient.id}</td>
+      <td>${ingredient.name}</td>
+      <td>${ingredient.unit}</td>
+      <td>${ingredient.vegetarian}</td>
+      <td>${ingredient.vegan}</td>
+      <td>${ingredient.amountInPantry}</td>
+    `;
+    tableBody.appendChild(row);
+  });
 }
 
-const addNewIngredient = (cb) => {
-    const addIngredientForm = document.getElementById("addNewIngredient").elements;
-    const name = addIngredientForm["name"].value;
-    const unit = addIngredientForm["unit"].value;
-    const vegetarian = addIngredientForm["vegetarian"].value;
-    const vegan = addIngredientForm["vegan"].value;
-    const amountInPantry = addIngredientForm["amountInPantry"].value;
-    const ingredient = {
-      name,
-      unit,
-      vegetarian,
-      vegan,
-      amountInPantry
-    }
-    fetch("/ingredients/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(ingredient)
-    })
-      .then(res => res.json())
-      .then(handle500Error)
-      .then(json => {
-        alert(`Successfully added ingredient with id ${json.id}: (${JSON.stringify(json)})`);
-        fetchAllIngredients(cb);
-      })
-      .catch(renderError);
+fetchData("/ingredients/all")
+  .then((ingredients) => {
+    populateTableWithIngredients(ingredients);
+  })
+  .catch((error) => {
+    console.error("Error fetching data: ", error);
+    throw error;
+  });
+
+function populateWithIngredientsInPantry() {
+  fetchData("/ingredients/inPantry")
+  .then((ingredients) => {
+    populateTableWithIngredients(ingredients);
+  })
+  .catch((error) => {
+    console.error("Error fetching data: ", error);
+    throw error;
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const inPantryButton = document.getElementById("inPantryButton");
+  if(inPantryButton) {
+    inPantryButton.addEventListener('click',populateWithIngredientsInPantry);
   }
-
-
-  const renderIngredientsListCallback = (ingredientsTableBody) => (ingredients) => {
-    
-    ingredients.forEach((ingredient) => {
-      const ingredientsRow = document.createElement("tr");
-      ingredientsRow.innerHTML = `
-        <td>${ingredient.id}</td>
-        <td>${ingredient.name}</td>
-        <td>${ingredient.unit}</td>
-        <td>${ingredient.vegetarian}</td>
-        <td>${ingredient.vegan}</td>
-        <td>${ingredient.amountInPantry}</td>
-      `;
-      ingredientsTableBody.appendChild(ingredientsRow);
-    });
-  }
-
-  fetchAllIngredients(
-    renderIngredientsListCallback(
-      document.getElementById("ingredientsTableBody")
-    )
-  );
-
-
-function populateIngredientsTable() {
-    
-    fetch("/ingredients/all")
-      .then(response => response.json())
-      .then(data => {
-        
-        const tableBody = document.getElementById("ingredientsTableBody");
-  
-        
-        data.forEach(ingredient => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${ingredient.id}</td>
-            <td>${ingredient.name}</td>
-            <td>${ingredient.unit}</td>
-            <td>${ingredient.vegetarian}</td>
-            <td>${ingredient.vegan}</td>
-            <td>${ingredient.amountInPantry}</td>
-          `;
-          tableBody.appendChild(row);
-        });
-      })
-      .catch(error => console.error("Error fetching data:", error));
-  }
-  
-  // Call the function to populate the table when the page loads
-  window.addEventListener("load", populateIngredientsTable);
-  
+});
