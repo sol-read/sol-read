@@ -83,7 +83,7 @@ public class RecipeController {
     public Recipe addRecipe(@RequestBody Map<String, Object> requestBody) {
 
         String recipeName = (String) requestBody.get("recipeName");
-        List<Integer> ingredientIds = (List<Integer>) requestBody.get("ingredientIdList");
+        List<Integer> ingredientIds = (List<Integer>) requestBody.get("ingredientIds");
         List<Integer> ingredientAmounts = (List<Integer>) requestBody.get("ingredientAmounts");
 
         List<Ingredient> ingredientList = new ArrayList<>();
@@ -96,6 +96,7 @@ public class RecipeController {
         for(int i=0;i<ingredientAmounts.size();i++) {
             RecipeIngredientAmount recipeIngredientAmount = recipeIngredientRepository.findByRecipeIdAndIngredientId(addedRecipe.getId(),ingredientIds.get(i));
             recipeIngredientAmount.setAmount(ingredientAmounts.get(i));
+            recipeIngredientRepository.save(recipeIngredientAmount);
         }
         return addedRecipe;
     }
