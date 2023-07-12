@@ -75,15 +75,6 @@ window.addEventListener("DOMContentLoaded", () => {
             ingredientAmounts: ingredientAmountList
         };
 
-        const alternateRequestBody = {
-             recipeName,
-             ingredientIdList,
-             ingredientAmountList
-        };
-
-        console.log(ingredientIdList);
-        console.log(requestBody);
-        console.log(alternateRequestBody);
         console.log(JSON.stringify(requestBody));
 
         fetch("/recipes/add", {

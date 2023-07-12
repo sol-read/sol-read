@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 @RestController
@@ -79,9 +80,11 @@ public class RecipeController {
 
     @PostMapping(value = "/add",
                 consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Recipe addRecipe(@RequestParam(name = "recipeName") String recipeName,
-                            @RequestParam(name = "ingredientIds") List<Integer> ingredientIds,
-                            @RequestParam(name = "ingredientAmounts") List<Integer> ingredientAmounts) {
+    public Recipe addRecipe(@RequestBody Map<String, Object> requestBody) {
+
+        String recipeName = (String) requestBody.get("recipeName");
+        List<Integer> ingredientIds = (List<Integer>) requestBody.get("ingredientIdList");
+        List<Integer> ingredientAmounts = (List<Integer>) requestBody.get("ingredientAmounts");
 
         List<Ingredient> ingredientList = new ArrayList<>();
         for(Integer ingredientId : ingredientIds) {
