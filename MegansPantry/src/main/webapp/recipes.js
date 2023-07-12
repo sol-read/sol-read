@@ -57,7 +57,7 @@ function applyFilters() {
     filterParams.set("vegan", "true");
   }
   if(canMakeFilter.checked) {
-    filterParams.set("canMake","true")
+    filterParams.set("canMake","true");
   }
 
   fetchData(`/recipes/all?${filterParams.toString()}`)
