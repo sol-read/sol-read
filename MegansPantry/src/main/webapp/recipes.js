@@ -70,6 +70,7 @@ fetchData("/recipes/all")
 function applyFilters() {
   const vegetarianFilter = document.getElementById("vegetarianFilter");
   const veganFilter = document.getElementById("veganFilter");
+  const canMakeFilter = document.getElementById("canMakeFilter");
 
   const filterParams = new URLSearchParams();
   if (vegetarianFilter.checked) {
@@ -77,6 +78,9 @@ function applyFilters() {
   }
   if (veganFilter.checked) {
     filterParams.set("vegan", "true");
+  }
+  if(canMakeFilter.checked) {
+    filterParams.set("canMake","true")
   }
 
   fetchData(`/recipes/all?${filterParams.toString()}`)
