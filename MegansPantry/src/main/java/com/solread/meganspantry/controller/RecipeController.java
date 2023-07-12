@@ -73,7 +73,8 @@ public class RecipeController {
         List<Ingredient> recipeIngredients = maybeRecipe.get().getIngredients();
         List<String> ingredientList = new ArrayList<>();
         for(Ingredient ingredient : recipeIngredients) {
-            ingredientList.add(ingredient.getName());
+            RecipeIngredientAmount recipeIngredientAmount = recipeIngredientRepository.findByRecipeIdAndIngredientId(id,ingredient.getId());
+            ingredientList.add(ingredient.getName() + ": " + recipeIngredientAmount.getAmount() + " " + ingredient.getUnit());
         }
         return ingredientList;
     }
