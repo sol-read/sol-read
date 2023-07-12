@@ -20,7 +20,7 @@ function fetchData(apiEndpoint) {
 }
 
 function showIngredients(ingredients) {
-    const recipeIngredientBody = document.getElementById("ingredientForRecipeBody");
+    const recipeIngredientBody = document.getElementById("ingredientsForRecipeBody");
     recipeIngredientBody.innerHTML = "";
 
     ingredients.forEach((ingredient) => {
