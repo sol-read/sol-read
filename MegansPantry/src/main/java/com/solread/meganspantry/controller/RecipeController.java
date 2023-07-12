@@ -92,19 +92,33 @@ public class RecipeController {
         return maybeRecipe.get();
     }
 
+//    @GetMapping(value = "/{id}/ingredients")
+//    public List<String> getRecipeIngredients(@PathVariable("id") Integer id) {
+//        Optional<Recipe> maybeRecipe = recipeRepository.findById(id);
+//        if(!maybeRecipe.isPresent()) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+//        }
+//        List<Ingredient> recipeIngredients = maybeRecipe.get().getIngredients();
+//        List<String> ingredientList = new ArrayList<>();
+//        for(Ingredient ingredient : recipeIngredients) {
+//            RecipeIngredientAmount recipeIngredientAmount = recipeIngredientRepository.findByRecipeIdAndIngredientId(id,ingredient.getId());
+//            ingredientList.add(ingredient.getName() + ": " + recipeIngredientAmount.getAmount() + " " + ingredient.getUnit());
+//        }
+//        return ingredientList;
+//    }
+
     @GetMapping(value = "/{id}/ingredients")
-    public List<String> getRecipeIngredients(@PathVariable("id") Integer id) {
-        Optional<Recipe> maybeRecipe = recipeRepository.findById(id);
-        if(!maybeRecipe.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+    public List<Ingredient> getRecipeIngredients(@PathVariable("id") Integer id) {
+        Recipe recipe = recipeRepository.findById(id).get();
+        List<RecipeIngredientAmount> recipeIngredientAmounts = recipeIngredientRepository.findByRecipeId(id);
+
+        List<Ingredient> ingredientsInRecipe = recipe.getIngredients();
+        for(int i=0;i<ingredientsInRecipe.size();i++) {
+            Ingredient ingredient = ingredientsInRecipe.get(i);
+            ingredient.setAmountNeeded(recipeIngredientAmounts.get(i).getAmount());
         }
-        List<Ingredient> recipeIngredients = maybeRecipe.get().getIngredients();
-        List<String> ingredientList = new ArrayList<>();
-        for(Ingredient ingredient : recipeIngredients) {
-            RecipeIngredientAmount recipeIngredientAmount = recipeIngredientRepository.findByRecipeIdAndIngredientId(id,ingredient.getId());
-            ingredientList.add(ingredient.getName() + ": " + recipeIngredientAmount.getAmount() + " " + ingredient.getUnit());
-        }
-        return ingredientList;
+
+        return ingredientsInRecipe;
     }
 
     @PostMapping(value = "/add",

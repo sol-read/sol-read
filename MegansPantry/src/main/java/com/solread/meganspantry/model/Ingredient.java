@@ -35,6 +35,9 @@ public class Ingredient {
     @Column(name = "amount_in_pantry")
     private Integer amountInPantry;
 
+    @Transient
+    private Integer amountNeeded;
+
     @JsonIgnore
     @OneToMany(mappedBy = "ingredient")
     @Transient
@@ -68,6 +71,9 @@ public class Ingredient {
 
     public Integer getAmountInPantry() { return amountInPantry; }
     public void setAmountInPantry(Integer amountInPantry) { this.amountInPantry = amountInPantry; }
+
+    public Integer getAmountNeeded() { return amountNeeded; }
+    public void setAmountNeeded(Integer amountNeeded) { this.amountNeeded = amountNeeded; }
 
     public List<Purchase> getPurchases() { return purchases; }
     public void setPurchases(List<Purchase> purchases) { this.purchases = purchases; }
