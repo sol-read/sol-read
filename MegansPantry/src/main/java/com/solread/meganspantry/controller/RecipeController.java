@@ -33,16 +33,44 @@ public class RecipeController {
 
     @GetMapping(value = "/all")
     public List<Recipe> getAllRecipes(@RequestParam(required = false) Boolean vegetarian,
-                                      @RequestParam(required = false) Boolean vegan) {
-        if(vegan == null && vegetarian == null) {
+                                      @RequestParam(required = false) Boolean vegan,
+                                      @RequestParam(required = false) Boolean canMake) {
+        if(vegan == null && vegetarian == null && canMake == null) {
             return recipeRepository.findAll();
-        } else if(vegan == null) {
+        } else if(vegan == null && canMake == null) {
             return recipeRepository.findByIsVegetarian(vegetarian);
-        } else if(vegetarian == null) {
+        } else if(vegetarian == null && canMake == null) {
             return recipeRepository.findByIsVegan(vegan);
-        } else {
+        } else if (vegan == null && vegetarian == null) {
+            return getRecipesThatCanBeMadeWithAvailableIngredients();
+        } else if (vegan == null) {
+            List<Recipe> availableRecipes = getRecipesThatCanBeMadeWithAvailableIngredients();
+            for(Recipe recipe : availableRecipes) {
+                if(recipe.isVegetarian() == false) {
+                    availableRecipes.remove(recipe);
+                    return availableRecipes;
+                }
+            }
+        } else if (vegetarian == null) {
+            List<Recipe> availableRecipes = getRecipesThatCanBeMadeWithAvailableIngredients();
+            for(Recipe recipe : availableRecipes) {
+                if(recipe.isVegan() == false) {
+                    availableRecipes.remove(recipe);
+                    return availableRecipes;
+                }
+            }
+        } else if (canMake == null) {
             return recipeRepository.findByIsVegetarianAndIsVegan(vegetarian,vegan);
+        } else {
+            List<Recipe> availableRecipes = getRecipesThatCanBeMadeWithAvailableIngredients();
+            for(Recipe recipe : availableRecipes) {
+                if(!recipe.isVegan() || !recipe.isVegetarian()) {
+                    availableRecipes.remove(recipe);
+                }
+            }
+            return availableRecipes;
         }
+        return null;
     }
 
     @GetMapping(value = "/vegetarian")
