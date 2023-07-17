@@ -104,10 +104,12 @@ window.addEventListener("DOMContentLoaded", () => {
         })
         .then((response) => response.json())
         .then((ingredientData) => {
-            console.log("Returned: " + ingredientData);
+            alert(`Successfully added ${ingredientData.name} to the database!`);
         })
         .catch((error) => {
             console.error("Error: ", error);
         });
+
+
     });
 });

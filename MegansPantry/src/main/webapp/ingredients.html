@@ -28,8 +28,6 @@
       <select name="ingredientUnit" id="unitSelect">
       </select><br>
       <script>
-        console.log("Script Executed");
-
         fetchData("/ingredients/units")
           .then((units) => {
             const unitSelect = document.getElementById("unitSelect");
