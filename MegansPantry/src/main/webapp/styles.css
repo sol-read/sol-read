@@ -1,0 +1,19 @@
+.banner {
+    background-color: #008080;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.banner a {
+    margin-right: 10px;
+    color: #FFFFFF;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+
+}

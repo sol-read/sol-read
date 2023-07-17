@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Megan's Recipes</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="recipes.js"></script>
+    </head>
+    <body>
+        <div class="banner">
+            <a href="/">Home</a>
+            <a href="./recipes.html">Recipes</a>
+            <a href="./ingredients.html">Ingredients</a>
+            <a href="./addRecipe.html">Add Recipe Portal</a>
+        </div>
+        <br />
+        <h1>Welcome to Megan's Recipes!</h1>
+        <h2>Here you can check recipes, what you can make & add new recipes to your virtual booklet!</h2>
+        <br />
+        <div id="recipesList" class="recipes-list">
+            <h2>Recipes</h2>
+            <h4>(Click the recipe name for ingredient list)</h4>
+            <div id="filters">
+                <label>
+                    <input type="checkbox" id="vegetarianFilter">Vegetarian
+                </label>
+                <label>
+                    <input type="checkbox" id="veganFilter">Vegan
+                </label>
+                <label>
+                    <input type="checkbox" id="canMakeFilter">Can Make
+                </label>
+                <button id="applyFiltersButton">Apply Filters</button>
+            </div>
+            <table class="recipes-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Vegetarian</th>
+                    <th>Vegan</th>
+                </tr>
+                </thead>
+                <tbody id="recipesTableBody">
+
+                </tbody>
+            </table>
+        </div>
+        <div id="recipeIngredientSection">
+            <table class="ingredients-for-recipe-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Amount Needed</th>
+                    <th>Unit</th>
+                    <th>Amount in Pantry</th>
+                </tr>
+                </thead>
+                <tbody id="ingredientsForRecipeBody">
+
+                </tbody>
+            </table>
+        </div>
+
+    </body>
+</html>

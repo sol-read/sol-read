@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Megan's Ingredients</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="ingredients.js"></script>
+</head>
+<body>
+  <div class="banner">
+    <a href="/">Home</a>
+    <a href="./recipes.html">Recipes</a>
+    <a href="./ingredients.html">Ingredients</a>
+    <a href="./addRecipe.html">Add Recipe Portal</a>
+  </div>
+  <br />
+  <h1>Welcome to Megan's Ingredients!</h1>
+  <h2>Here you can check what you have in the pantry & add ingredients</h2>
+  <br />
+  <div class="addIngredientSection">
+    <p>
+      Add an ingredient:
+    </p>
+    <form id="addIngredientForm">
+      <label for="ingredientName">Name:</label>
+      <input type="text" id="ingredientName" name="ingredientName" placeholder="e.g. cheese"><br>
+      <label for="unitSelect">Unit:</label>
+      <select name="ingredientUnit" id="unitSelect">
+      </select><br>
+      <script>
+        fetchData("/ingredients/units")
+          .then((units) => {
+            const unitSelect = document.getElementById("unitSelect");
+            units.forEach(unit => {
+              const unitOption = document.createElement("option");
+              unitOption.value = unit;
+              unitOption.textContent = unit;
+              unitSelect.appendChild(unitOption);
+            });
+          });
+      </script>
+      <label for="ingredientVegetarian">Vegetarian?</label>
+      <input type="checkbox" id="ingredientVegetarian" name="ingredientVegetarian"><br>
+      <label for="ingredientVegan">Vegan?</label>
+      <input type="checkbox" id="ingredientVegan" name="ingredientVegan"><br>
+      <label for="ingredientAmountInPantry">Amount in Pantry:</label>
+      <input type="number" id="ingredientAmountInPantry" name="ingredientAmountInPantry" min="0"><br>
+      <input type="submit" id="newIngredientSubmitButton">
+    </form>
+
+  </div>
+
+  <div id="ingredientsList" class="ingredients-list">
+    <h2>All Ingredients</h2>
+    <div id="filters">
+      <button id="inPantryButton">
+        In Pantry
+      </button>
+    </div>
+    <table class="ingredients-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Unit</th>
+        <th>Vegetarian</th>
+        <th>Vegan</th>
+        <th>Amount in Pantry</th>
+      </tr>
+    </thead>
+    <tbody id="ingredientsTableBody">
+
+    </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
