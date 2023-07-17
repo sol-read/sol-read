@@ -4,6 +4,7 @@ import com.solread.meganspantry.enums.IngredientUnit;
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -39,7 +40,8 @@ public class IngredientController {
         return maybeIngredient.get();
     }
 
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/add",
+                consumes = MediaType.APPLICATION_JSON_VALUE)
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient newIngredient = ingredientRepository.save(ingredient);
         return newIngredient;

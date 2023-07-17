@@ -71,17 +71,29 @@ window.addEventListener("DOMContentLoaded", () => {
 
         const ingredientName = addIngredientFormData.get("ingredientName");
         const ingredientUnit = addIngredientFormData.get("ingredientUnit");
-        const ingredientVegetarian = addIngredientFormData.get("ingredientVegetarian");
-        const ingredientVegan = addIngredientFormData.get("ingredientVegan");
+        let ingredientVegetarian = addIngredientFormData.get("ingredientVegetarian");
+        if(ingredientVegetarian === null) {
+            ingredientVegetarian = false;
+        } else {
+            ingredientVegetarian = true;
+        }
+        let ingredientVegan = addIngredientFormData.get("ingredientVegan");
+        if(ingredientVegan !== null && ingredientVegetarian === true) {
+            ingredientVegan = true;
+        } else {
+            ingredientVegan = false;
+        }
         const ingredientAmountInPantry = addIngredientFormData.get("ingredientAmountInPantry");
 
         const ingredientPayload = {
-            ingredientName,
-            ingredientUnit,
-            ingredientVegetarian,
-            ingredientVegan,
-            ingredientAmountInPantry
+            "name": ingredientName,
+            "unit": ingredientUnit,
+            "isVegetarian": ingredientVegetarian,
+            "isVegan": ingredientVegan,
+            "amountInPantry": ingredientAmountInPantry
         };
+
+        console.log(ingredientPayload);
 
         fetch("/ingredients/add", {
             method: "POST",
@@ -97,5 +109,5 @@ window.addEventListener("DOMContentLoaded", () => {
         .catch((error) => {
             console.error("Error: ", error);
         });
-    })
+    });
 });
