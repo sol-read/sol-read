@@ -75,14 +75,16 @@ window.addEventListener("DOMContentLoaded", () => {
             ingredientAmounts: ingredientAmountList
         };
 
-        console.log(JSON.stringify(requestBody));
-
         fetch("/recipes/add", {
             method: 'POST',
             headers: {
               "Content-type": "application/json"
             },
             body: JSON.stringify(requestBody)
+        })
+        .then((response) => response.json())
+        .then((newRecipeData) => {
+            alert(`Successfully added ${newRecipeData.name} to the database!`);
         });
 
     });
