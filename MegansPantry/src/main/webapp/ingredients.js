@@ -58,8 +58,44 @@ function populateWithIngredientsInPantry() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  const inPantryButton = document.getElementById("inPantryButton");
-  if(inPantryButton) {
-    inPantryButton.addEventListener('click',populateWithIngredientsInPantry);
-  }
+    const inPantryButton = document.getElementById("inPantryButton");
+    if(inPantryButton) {
+        inPantryButton.addEventListener('click',populateWithIngredientsInPantry);
+    }
+
+    const addIngredientForm = document.getElementById("addIngredientForm");
+    addIngredientForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const addIngredientFormData = new FormData(addIngredientForm);
+
+        const ingredientName = addIngredientFormData.get("ingredientName");
+        const ingredientUnit = addIngredientFormData.get("ingredientUnit");
+        const ingredientVegetarian = addIngredientFormData.get("ingredientVegetarian");
+        const ingredientVegan = addIngredientFormData.get("ingredientVegan");
+        const ingredientAmountInPantry = addIngredientFormData.get("ingredientAmountInPantry");
+
+        const ingredientPayload = {
+            ingredientName,
+            ingredientUnit,
+            ingredientVegetarian,
+            ingredientVegan,
+            ingredientAmountInPantry
+        };
+
+        fetch("/ingredients/add", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(ingredientPayload)
+        })
+        .then((response) => response.json())
+        .then((ingredientData) => {
+            console.log("Returned: " + ingredientData);
+        })
+        .catch((error) => {
+            console.error("Error: ", error);
+        });
+    })
 });

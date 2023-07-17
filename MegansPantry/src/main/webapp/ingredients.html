@@ -18,8 +18,36 @@
   <h2>Here you can check what you have in the pantry & add ingredients</h2>
   <br />
   <div class="addIngredientSection">
+    <p>
+      Add an ingredient:
+    </p>
     <form id="addIngredientForm">
+      <label for="ingredientName">Name:</label>
+      <input type="text" id="ingredientName" name="ingredientName" placeholder="e.g. cheese"><br>
+      <label for="unitSelect">Unit:</label>
+      <select name="ingredientUnit" id="unitSelect">
+      </select><br>
+      <script>
+        console.log("Script Executed");
 
+        fetchData("/ingredients/units")
+          .then((units) => {
+            const unitSelect = document.getElementById("unitSelect");
+            units.forEach(unit => {
+              const unitOption = document.createElement("option");
+              unitOption.value = unit;
+              unitOption.textContent = unit;
+              unitSelect.appendChild(unitOption);
+            });
+          });
+      </script>
+      <label for="ingredientVegetarian">Vegetarian?</label>
+      <input type="checkbox" id="ingredientVegetarian" name="ingredientVegetarian"><br>
+      <label for="ingredientVegan">Vegan?</label>
+      <input type="checkbox" id="ingredientVegan" name="ingredientVegan"><br>
+      <label for="ingredientAmountInPantry">Amount in Pantry:</label>
+      <input type="number" id="ingredientAmountInPantry" name="ingredientAmountInPantry" min="0"><br>
+      <input type="submit" id="newIngredientSubmitButton">
     </form>
 
   </div>

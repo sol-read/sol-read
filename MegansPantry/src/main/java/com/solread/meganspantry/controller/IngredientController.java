@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +25,11 @@ public class IngredientController {
         return ingredientRepository.findAll();
     }
 
+    @GetMapping(value = "/units")
+    public List<IngredientUnit> getIngredientUnits() {
+        return Arrays.asList(IngredientUnit.values());
+    }
+
     @GetMapping(value = "/{id}")
     public Ingredient getIngredientById(@PathVariable("id") Integer id) {
         Optional<Ingredient> maybeIngredient = ingredientRepository.findById(id);
@@ -33,7 +39,7 @@ public class IngredientController {
         return maybeIngredient.get();
     }
 
-    @PutMapping(value = "/add")
+    @PostMapping(value = "/add")
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
         Ingredient newIngredient = ingredientRepository.save(ingredient);
         return newIngredient;
