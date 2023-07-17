@@ -9,17 +9,17 @@ function fetchData(apiEndpoint) {
   }
 
 function addIngredientsToSelectionList(ingredients) {
-const ingredientSelection = document.getElementById("ingredientSelection");
-ingredientSelection.innerHTML = "";
+    const ingredientSelection = document.getElementById("ingredientSelection");
+    ingredientSelection.innerHTML = "";
 
-ingredients.forEach((ingredient) => {
-    const option = document.createElement("option");
-    option.value = ingredient.name;
-    option.setAttribute("data-id", ingredient.id);
-    option.setAttribute("data-unit", ingredient.unit);
-    option.textContent = `${ingredient.name} (${ingredient.unit})`
-    ingredientSelection.appendChild(option);
-});
+    ingredients.forEach((ingredient) => {
+        const option = document.createElement("option");
+        option.value = ingredient.name;
+        option.setAttribute("data-id", ingredient.id);
+        option.setAttribute("data-unit", ingredient.unit);
+        option.textContent = `${ingredient.name} (${ingredient.unit})`
+        ingredientSelection.appendChild(option);
+    });
 }
 
 window.onload = function() {
