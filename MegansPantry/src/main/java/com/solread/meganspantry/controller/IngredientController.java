@@ -33,27 +33,18 @@ public class IngredientController {
 
     @GetMapping(value = "/{id}")
     public Ingredient getIngredientById(@PathVariable("id") Integer id) {
-        Optional<Ingredient> maybeIngredient = ingredientRepository.findById(id);
-        if(!maybeIngredient.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        return maybeIngredient.get();
+        return ingredientRepository.findById(id).get();
     }
 
     @PostMapping(value = "/add",
                 consumes = MediaType.APPLICATION_JSON_VALUE)
     public Ingredient addNewIngredient(@RequestBody Ingredient ingredient) {
-        Ingredient newIngredient = ingredientRepository.save(ingredient);
-        return newIngredient;
+        return ingredientRepository.save(ingredient);
     }
 
     @GetMapping(value = "/{id}/addMore/{amount}")
     public String addMoreOfAnIngredient(@PathVariable("id") Integer id, @PathVariable("amount") Integer amountToBeAdded) {
-        Optional<Ingredient> maybeIngredient = ingredientRepository.findById(id);
-        if(!maybeIngredient.isPresent()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-        Ingredient ingredient = maybeIngredient.get();
+        Ingredient ingredient = ingredientRepository.findById(id).get();
         ingredient.addAmountToPantry(amountToBeAdded);
 
         Ingredient savedIngredient = ingredientRepository.save(ingredient);

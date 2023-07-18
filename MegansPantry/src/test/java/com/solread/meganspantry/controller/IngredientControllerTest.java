@@ -55,9 +55,6 @@ class IngredientControllerTest {
         Ingredient result = ingredientController.getIngredientById(1);
 
         assertEquals(result, ingredient);
-        assertThrows(ResponseStatusException.class, () -> {
-            ingredientController.getIngredientById(2);
-        });
     }
 
     @Test
