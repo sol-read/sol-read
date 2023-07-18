@@ -47,6 +47,7 @@ function populateTableWithRecipes(recipes) {
       <td><a href="#recipeIngredientSection" class="recipe-link">${recipe.name}</a></td>
       <td>${recipe.vegetarian}</td>
       <td>${recipe.vegan}</td>
+      <td><button class="deleteRecipeButton" data-recipe-id="${recipe.id}">❌REMOVE❌</button></td>
     `;
     tableBody.appendChild(row);
 
@@ -60,6 +61,12 @@ function populateTableWithRecipes(recipes) {
             console.error("Error displaying ingredients: ", error);
             throw error;
         });
+    });
+
+    const deleteRecipeButton = row.querySelector(".deleteRecipeButton");
+    deleteRecipeButton.addEventListener('click', () => {
+        const recipeIdToBeDeleted = deleteRecipeButton.getAttribute("data-recipe-id");
+        deleteRecipe(recipeIdToBeDeleted);
     });
   });
 }
@@ -96,6 +103,22 @@ function applyFilters() {
     .catch((error) => {
       console.error("Error fetching data: ", error);
       throw error;
+    });
+}
+
+function deleteRecipe(recipeId) {
+    fetch(`/recipes/${recipeId}/delete`, {
+        method: "DELETE"
+    })
+    .then((response) => {
+        if(response.ok) {
+            alert(`Removed recipe from database.`);
+        } else {
+            alert("Failed to remove recipe.");
+        }
+    })
+    .catch((error) => {
+        console.error("Error deleting recipe: ", error);
     });
 }
 
