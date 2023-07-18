@@ -143,4 +143,10 @@ public class RecipeController {
         return recipesThatCanBeMade;
     }
 
+    @DeleteMapping(value = "/{id}/delete")
+    public void deleteRecipeById(@PathVariable("id") Integer id) {
+        Recipe recipeToBeDeleted = recipeRepository.findById(id).get();
+        recipeRepository.delete(recipeToBeDeleted);
+    }
+
 }
