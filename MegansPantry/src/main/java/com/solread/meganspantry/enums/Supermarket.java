@@ -1,6 +1,6 @@
 package com.solread.meganspantry.enums;
 
-public enum Shop {
+public enum Supermarket {
 
     WAITROSE,
     MARKS_AND_SPENCERS,
