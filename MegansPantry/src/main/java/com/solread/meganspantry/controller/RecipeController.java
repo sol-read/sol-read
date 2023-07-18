@@ -43,7 +43,7 @@ public class RecipeController {
         } else if (vegan == null) {
             List<Recipe> availableRecipes = getRecipesThatCanBeMadeWithAvailableIngredients();
             for(Recipe recipe : availableRecipes) {
-                if(!recipe.isVegetarian()) {
+                if(recipe.isVegetarian() == false) {
                     availableRecipes.remove(recipe);
                     return availableRecipes;
                 }
@@ -51,7 +51,7 @@ public class RecipeController {
         } else if (vegetarian == null) {
             List<Recipe> availableRecipes = getRecipesThatCanBeMadeWithAvailableIngredients();
             for(Recipe recipe : availableRecipes) {
-                if(!recipe.isVegan()) {
+                if(recipe.isVegan() == false) {
                     availableRecipes.remove(recipe);
                     return availableRecipes;
                 }
