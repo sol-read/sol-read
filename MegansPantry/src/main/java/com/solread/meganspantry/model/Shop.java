@@ -1,6 +1,7 @@
 package com.solread.meganspantry.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.solread.meganspantry.enums.Supermarket;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,7 +25,7 @@ public class Shop {
     private BigDecimal totalCost;
 
     @Column(name = "supermarket")
-    private String supermarket;
+    private Supermarket supermarket;
 
 
     public Integer getId() { return id; }
@@ -36,11 +37,11 @@ public class Shop {
     public BigDecimal getTotalCost() { return totalCost; }
     public void setTotalCost(BigDecimal totalCost) { this.totalCost = totalCost; }
 
-    public String getSupermarket() { return supermarket; }
-    public void setSupermarket(String supermarket) { this.supermarket = supermarket; }
+    public Supermarket getSupermarket() { return supermarket; }
+    public void setSupermarket(Supermarket supermarket) { this.supermarket = supermarket; }
 
 
-    public Shop(List<Purchase> purchases, BigDecimal totalCost, String supermarket) {
+    public Shop(List<Purchase> purchases, BigDecimal totalCost, Supermarket supermarket) {
         this.purchases = purchases;
         this.totalCost = totalCost;
         this.supermarket = supermarket;
