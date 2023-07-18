@@ -26,7 +26,6 @@ function showIngredients(ingredients) {
     ingredients.forEach((ingredient) => {
         const ingredientItem = document.createElement("tr");
         ingredientItem.innerHTML = `
-        <td>${ingredient.id}</td>
         <td>${ingredient.name}</td>
         <td>${ingredient.amountNeeded}</td>
         <td>${ingredient.unit}</td>

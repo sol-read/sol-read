@@ -15,5 +15,8 @@
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
+}
 
+td, th {
+    border-right: 1px solid #ccc;
 }
