@@ -1,4 +1,4 @@
-package com.solread.meganspantry.Exception;
+package com.solread.meganspantry.exception;
 
 public class InvalidActionSoFarException extends Exception {
     public InvalidActionSoFarException() {

@@ -1,6 +1,6 @@
 package com.solread.meganspantry.controller;
 
-import com.solread.meganspantry.Exception.InvalidActionSoFarException;
+import com.solread.meganspantry.exception.InvalidActionSoFarException;
 import com.solread.meganspantry.model.Purchase;
 import com.solread.meganspantry.model.Ingredient;
 import com.solread.meganspantry.repository.IngredientRepository;

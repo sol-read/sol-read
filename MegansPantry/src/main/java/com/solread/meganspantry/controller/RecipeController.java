@@ -6,12 +6,9 @@ import com.solread.meganspantry.model.RecipeIngredientAmount;
 import com.solread.meganspantry.repository.RecipeRepository;
 import com.solread.meganspantry.repository.RecipeIngredientRepository;
 import com.solread.meganspantry.repository.IngredientRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.*;
 
 @RestController
@@ -84,12 +81,7 @@ public class RecipeController {
 
     @GetMapping(value = "/{id}")
     public Recipe getRecipeById(@PathVariable("id") Integer id) {
-        Optional<Recipe> maybeRecipe = recipeRepository.findById(id);
-        if(!maybeRecipe.isPresent()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        return maybeRecipe.get();
+        return recipeRepository.findById(id).get();
     }
 
     @GetMapping(value = "/{id}/ingredients")
